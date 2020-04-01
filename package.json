@@ -1,0 +1,18 @@
+{
+  "name": "play-uno",
+  "version": "0.1.0",
+  "description": "online uno, to play play with friends",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "uno"
+  ],
+  "author": "tom Demagny",
+  "dependencies": {
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
+  }
+}
