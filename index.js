@@ -15,10 +15,6 @@ app.get('/', function(req, res){
 	res.render('pages/accueil.ejs');
 });
 
-app.get('/room/:roomnumber', function(req, res){
-	res.render("pages/room.ejs", {roomnumber: req.params.roomnumber});
-});
-
 app.get('/socket.io', function(req, res){
 	var param = querystring.parse(url.parse(req.url).query);
 	var name;
