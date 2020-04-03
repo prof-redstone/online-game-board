@@ -26,6 +26,8 @@ app.get('/socket.io', function(req, res){
 	res.render("pages/socket.io.ejs", {url: "test-1-tom.herokuapp.com", name: name});
 });
 
+app.use(express.static('public'));
+
 app.use(function(req, res, next){ //a mettre juste avant app.listen
 	res.setHeader("Content-Type", 'text/plain');
 	res.status(404).send('Page introuvable ! Votre clavier a fourché. ');
