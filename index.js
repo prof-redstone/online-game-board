@@ -13,9 +13,9 @@ console.log("le port de connection impossé est :" + process.env.PORT + " sinon 
 var server = http.createServer(app);
 
 
-app.use(favicon(path.join(__dirname, 'public/imgfiles', 'favicon.ico')))
-
-app.use(express.favicon("public/imgfiles/favicon.ico"));
+app.get('/', function(req, res){
+	res.render('pages/accueil.ejs');
+});
 
 app.get('/socket.io', function(req, res){
 	var param = querystring.parse(url.parse(req.url).query);
@@ -29,6 +29,8 @@ app.get('/socket.io', function(req, res){
 });
 
 app.use(express.static('public'));
+
+app.use(favicon(path.join(__dirname, 'public/imgfiles', 'favicon.ico')))
 
 app.use(function(req, res, next){ //a mettre juste avant app.listen
 	res.setHeader("Content-Type", 'text/plain');
