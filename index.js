@@ -3,6 +3,8 @@ var app = express();
 var http = require('http');
 var url = require("url");
 var querystring  =require("querystring");
+var favicon = require('serve-favicon');
+var path = require('path')
 
 var localPort = 8080
 var PORT = process.env.PORT || localPort;
@@ -11,9 +13,9 @@ console.log("le port de connection impossé est :" + process.env.PORT + " sinon 
 var server = http.createServer(app);
 
 
-app.get('/', function(req, res){
-	res.render('pages/accueil.ejs');
-});
+app.use(favicon(path.join(__dirname, 'public/imgfiles', 'favicon.ico')))
+
+app.use(express.favicon("public/imgfiles/favicon.ico"));
 
 app.get('/socket.io', function(req, res){
 	var param = querystring.parse(url.parse(req.url).query);
