@@ -28,9 +28,9 @@ app.get('/socket.io', function(req, res){
 	res.render("pages/socket.io.ejs", {url: "test-1-tom.herokuapp.com", name: name});
 });
 
-app.use(express.static('public'));
+app.use(express.static('public'));//pour tout les fichier public
 
-app.use(favicon(path.join(__dirname, 'public/imgfiles', 'favicon.ico')))
+app.use(favicon(path.join(__dirname, 'public/imgfiles', 'favicon.ico')))//pour la requete de la favicon
 
 app.use(function(req, res, next){ //a mettre juste avant app.listen
 	res.setHeader("Content-Type", 'text/plain');
