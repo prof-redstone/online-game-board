@@ -12,7 +12,7 @@
 </head>
 <body style="margin: 0px;">
 
-    <div id="loadressources" style="width: 100%; height: 100%; background-color:cyan; position: fixed; display: flex; justify-content: center; align-items: center;">
+    <div id="loadressources" style="width: 100%; height: 100%; position: fixed; display: flex; display: none; justify-content: center; align-items: center;">
         <div style="display: block; justify-content: center;">
             <h1 style="font-family: Arial;">loading resources,</h1>
             <h1 id="pleaseWait" style="font-family: Arial;">please wait .</h1>
@@ -34,9 +34,61 @@
     </div>
 
     <div class="main-center">
-        <div style="max-width: 1000px;">
+        <div style="max-width: 1400px;">
             <div class="logo-name">
-                <h1 id="logonametitle">UNO ONLINE</h1>
+                <h1 id="logonametitle">
+                    <span>U</span><span>N</span><span>O</span><span> </span><span>O</span><span>N</span><span>L</span><span>I</span><span>N</span><span>E</span>
+                </h1>
+            </div>
+            <div class="centercontainer">
+                <div class="chatpart">
+                    <div class="chat">
+                        <div class="classContener">
+                            <section id="zone_chat">
+                            </section>
+                        </div>
+                        <form action="/" method="post" id="formulaire_chat">
+                            <input type="text" class="senderMess" name="message" id="message" placeholder="your message..." size="50" autocomplete="off" autofocus />
+                        </form>
+                        
+                        <style>
+                            .chat{
+                                background-color: #EEE;
+                                //border-style: solid;
+                                //border-radius: 5px;
+                                border-color: #CCC;
+                                width: 350px;
+                            }
+                            .senderMess{
+                                margin-left: 8px;
+                                margin-top: 5px;
+                                margin-bottom:2px;
+                                border-style: solid;
+                                border-radius: 3px;
+                                border-color: #CCC;
+                                padding-left: 2px;
+                                width: 332px;
+                            }
+                            #zone_chat{
+                                overflow-y: auto;
+                                height: 400px;
+                                margin-left: 10px;
+                                margin-left: 10px;
+                            }
+                            .messChat{
+                                margin-top: 5px;
+                                margin-bottom: 5px;
+                            }
+                            #formulaire_chat{
+
+                            }
+                        </style>
+                    </div>
+                </div>
+                <div class="separationbarre"></div>
+                <div class="loginpart">
+                    <div style="width: 400px;">juste a simple text for the moment</div>
+                </div>
             </div>
         </div>
     </div>
