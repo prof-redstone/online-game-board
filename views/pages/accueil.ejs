@@ -48,27 +48,31 @@
                             </section>
                         </div>
                         <form action="/" method="post" id="formulaire_chat">
-                            <input type="text" class="senderMess" name="message" id="message" placeholder="your message..." size="50" autocomplete="off" autofocus />
+                            <input type="text" class="senderMess" name="message" id="message" placeholder="your message..." size="50" autocomplete="off" style="margin-left: 0px;" autofocus />
                         </form>
                         
                         <style>
                             .chat{
                                 background-color: #EEE;
-                                //border-style: solid;
-                                //border-radius: 5px;
-                                border-color: #CCC;
                                 width: 350px;
                             }
+
                             .senderMess{
                                 margin-left: 8px;
                                 margin-top: 5px;
-                                margin-bottom:2px;
+                                margin-bottom: 2px;
+                                padding-bottom: 3px;
+                                border-width: 0px;
+                                border-top-width: 2px;
+                                border-bottom-width: 2px;
                                 border-style: solid;
-                                border-radius: 3px;
                                 border-color: #CCC;
                                 padding-left: 2px;
-                                width: 332px;
+                                background-color: #EEE;
+                                width: 350px;
+                                outline:none;
                             }
+                            
                             #zone_chat{
                                 overflow-y: auto;
                                 height: 400px;
@@ -78,9 +82,6 @@
                             .messChat{
                                 margin-top: 5px;
                                 margin-bottom: 5px;
-                            }
-                            #formulaire_chat{
-
                             }
                         </style>
                     </div>

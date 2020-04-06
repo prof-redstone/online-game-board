@@ -41,10 +41,23 @@ body{
    margin-left: 10px;
 }
 
+.chatpart{
+   margin-left: 10px;
+   margin-top: 10px;
+}
+
+.classContener{
+   background-color: #CCC;
+   border-radius: 3px;
+}
+
 .separationbarre{
-   margin-top: 15px;
-   margin-bottom: 15px;
+   margin-left: 15px;
+   margin-right: 15px;
+   margin-top: 30px;
+   margin-bottom: 30px;
    border-left: solid;
    border-width: 2px;
    border-color: #888;
+   
 }
