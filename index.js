@@ -40,18 +40,20 @@ app.use(function(req, res, next){ //a mettre juste avant app.listen
 
 // Chargement de socket.io
 
-var io = require('socket.io')(server);
-var allClients = [];
+//partie de gestion d'envoie et de resception de message du chat.
 
-// Quand un client se connecte, on le note dans la console
-io.sockets.on('connection', function (socket) {
+var io = require('socket.io')(server);
+var allClients = []; //liste de tout les clients connecté.
+
+var chat = io.of("/chat");
+chat.on('connection', function (socket) {
 	console.log('Un client se connecte !');
 
 	allClients.push(socket);
 
 	socket.on('disconnect', function() {
 		console.log("un client s'est déconnecté :" + socket.pseudo);
-		io.emit("client_left", socket.pseudo);
+		chat.emit("client_left", socket.pseudo);
 		var i = allClients.indexOf(socket);
 		allClients.splice(i, 1);
 	 });
