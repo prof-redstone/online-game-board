@@ -14,7 +14,8 @@ var server = http.createServer(app);
 
 
 app.get('/', function(req, res){
-	res.render('pages/accueil.ejs');
+	console.log(req.headers.host)
+	res.render('pages/accueil.ejs', {url: req.headers.host, name: "anonymous#" + Math.floor(Math.random() * Math.floor(1000))});
 });
 
 app.get('/socket.io', function(req, res){
