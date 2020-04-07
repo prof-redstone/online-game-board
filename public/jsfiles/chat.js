@@ -1,22 +1,24 @@
-console.log(location.protocol+"//<%= url %>");
-var chatSocket = io.connect(location.protocol+"//<%= url %>"+"/chat"); 
+console.log(location.protocol+"//" + url);
+var chatSocket = io.connect(location.protocol+"//" + url + "/chat"); 
 var pseudo;
 var servEtatPing = 0;
 
-if("<%= name %>" == "undefined"){ //si le pseudo ne se trouve pas dans l'url
+if(name == "undefined"){ //si le pseudo ne se trouve pas dans l'url
     pseudo = prompt('Quel est votre pseudo ?');
     if(pseudo == null){
         pseudo = "anonymous";
     }
     chatSocket.emit('nouveauPseudo', pseudo);
 }else{
-    pseudo = "<%= name %>";
+    pseudo = name;
     chatSocket.emit('nouveauPseudo', pseudo);
 }
+$('#inputpseudo').attr('value', pseudo);
 
 chatSocket.on('PseudoUnvalide', function(Npseudo) { //le serveur renvoie le nouveaux pseudo, à changer
     pseudo = Npseudo;
     chatSocket.emit('nouveauPseudo', pseudo);
+    $('#inputpseudo').attr('value', pseudo);
 })
 
 // Quand on reçoit un message, on l'insère dans la page

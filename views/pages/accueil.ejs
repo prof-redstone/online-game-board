@@ -105,7 +105,11 @@
         </div>
     </div>
     
-    
+    <script>
+        //script qui récupère tout les éléments de ejs du serveur
+        var url = "<%= url %>";
+        var name = "<%= name %>";
+    </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="jsfiles/chat.js"></script>
@@ -114,7 +118,7 @@
             pseudo = $('#inputpseudo').val();
             return false;
         });
-        $('#inputpseudo').attr('value', 'new value');
+        //$('#inputpseudo').attr('value', 'new value');
     </script>
 </body>
 </html>
