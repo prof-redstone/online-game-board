@@ -50,7 +50,7 @@
                             </section>
                         </div>
                         <form action="/" method="post" id="formulaire_chat">
-                            <input type="text" class="senderMess" name="message" id="message" placeholder="your message..." autocomplete="off" style="margin-left: 0px;"/>
+                            <input type="text" class="senderMess" name="message" id="message" placeholder="your message..." size="50" autocomplete="off" style="margin-left: 0px;"/>
                         </form>
                     </div>
                     
@@ -63,7 +63,7 @@
                     <div style="width: 400px;">
                         <div class="divname">
                             <form action="/" method="post" id="formulaire_name">
-                                <input type="text" id="inputpseudo" placeholder="Enter your pseudo" size="20" autocomplete="off" style="margin-left: 0px;"/>
+                                <input type="text" id="inputpseudo" placeholder="Enter your pseudo" size="20" autocomplete="off" maxlength="25" style="margin-left: 0px;"/>
                             </form>
                             
                         </div>
@@ -85,6 +85,7 @@
         $('#formulaire_name').submit(function () {
             pseudo = $('#inputpseudo').val();
             $('#inputpseudo').attr('placeholder', pseudo);
+            $('#inputpseudo').val('');
             $('#inputpseudo').blur();
             return false;
         });

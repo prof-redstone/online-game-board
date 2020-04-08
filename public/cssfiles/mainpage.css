@@ -38,7 +38,25 @@ body{
 }
 
 .loginpart{
-   margin-left: 10px;
+   margin-top: 10px;
+}
+
+#inputpseudo{
+   flex: 1 1 auto;
+   width: 100%;
+   border-style: none;
+   height: 30px;
+   border-width: 0px;
+   border-top-width: 2px;
+   border-bottom-width: 2px;
+   border-style: solid;
+   border-color: #CCC;
+   background-color: #EEE;
+   padding-left: 10px;
+}
+#inputpseudo:focus{
+   border-color: #59E;
+   outline: 0;
 }
 
 .chatpart{
@@ -99,8 +117,9 @@ body{
    border-color: #CCC;
    padding-left: 2px;
    background-color: #EEE;
-   max-width: 350px;
    outline:none;
+   flex: 1 1 auto;
+   width: 100%;
 }
 
 #zone_chat{
