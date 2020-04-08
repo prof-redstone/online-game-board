@@ -41,55 +41,23 @@
                 </h1>
             </div>
             <div class="centercontainer">
-                <div class="chatpart">
+                <div class="chatpart" style="height: 465;">
                     <div class="chat">
                         <div class="classContener">
+                            <p style="margin: 0px; padding-top: 5px; display: flex; justify-content: center; font-family: Arial, Helvetica, sans-serif; font-weight: bold;">PUBLIC CHAT !</p>
+                            <div class="separationbarreO"></div>
                             <section id="zone_chat">
                             </section>
                         </div>
                         <form action="/" method="post" id="formulaire_chat">
-                            <input type="text" class="senderMess" name="message" id="message" placeholder="your message..." size="50" autocomplete="off" style="margin-left: 0px;"/>
+                            <input type="text" class="senderMess" name="message" id="message" placeholder="your message..." autocomplete="off" style="margin-left: 0px;"/>
                         </form>
-                        
-                        <style>
-                            .chat{
-                                background-color: #EEE;
-                                width: 350px;
-                            }
-
-                            .senderMess{
-                                margin-left: 8px;
-                                margin-top: 5px;
-                                margin-bottom: 2px;
-                                padding-bottom: 3px;
-                                border-width: 0px;
-                                border-top-width: 2px;
-                                border-bottom-width: 2px;
-                                border-style: solid;
-                                border-color: #CCC;
-                                padding-left: 2px;
-                                background-color: #EEE;
-                                width: 350px;
-                                outline:none;
-                            }
-                            
-                            #zone_chat{
-                                overflow-y: auto;
-                                height: 400px;
-                                margin-left: 10px;
-                                margin-left: 10px;
-                            }
-                            .messChat{
-                                margin-top: 5px;
-                                margin-bottom: 5px;
-                            }
-                        </style>
                     </div>
                     
                     
                 </div>
 
-                <div class="separationbarre"></div>
+                <div class="separationbarreV"></div>
 
                 <div class="loginpart">
                     <div style="width: 400px;">
@@ -116,6 +84,8 @@
     <script>
         $('#formulaire_name').submit(function () {
             pseudo = $('#inputpseudo').val();
+            $('#inputpseudo').attr('placeholder', pseudo);
+            $('#inputpseudo').blur();
             return false;
         });
         //$('#inputpseudo').attr('value', 'new value');

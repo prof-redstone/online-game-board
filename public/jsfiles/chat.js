@@ -13,12 +13,12 @@ if(name == "undefined"){ //si le pseudo ne se trouve pas dans l'url
     pseudo = name;
     chatSocket.emit('nouveauPseudo', pseudo);
 }
-$('#inputpseudo').attr('value', pseudo);
+$('#inputpseudo').attr('placeholder', pseudo);
 
 chatSocket.on('PseudoUnvalide', function(Npseudo) { //le serveur renvoie le nouveaux pseudo, à changer
     pseudo = Npseudo;
     chatSocket.emit('nouveauPseudo', pseudo);
-    $('#inputpseudo').attr('value', pseudo);
+    $('#inputpseudo').attr('placeholder', pseudo);
 })
 
 // Quand on reçoit un message, on l'insère dans la page
@@ -50,7 +50,7 @@ $('#formulaire_chat').submit(function () {
 });
 
 function insereMessage(pseudo, message) {
-    $('#zone_chat').append('<p class="messChat"><strong>' + pseudo + " :" + '</strong> ' + message + '</p>');
+    $('#zone_chat').append('<p class="messChat fontMessage"><strong>' + pseudo + " :" + '</strong> ' + message + '</p>');
     element = document.getElementById('zone_chat');
     element.scrollTop = element.scrollHeight;
 }
