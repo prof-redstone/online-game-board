@@ -14,10 +14,14 @@ body{
     /* This is what makes the background image rescale based
        on the container's size */
     background-size: cover;
+    display: flex;
+    justify-content: center;
 }
 .main-center{
    display: flex;
    justify-content: center;
+   justify-self: center;
+   max-width: 900px;
 }
 
 .logo-name{
@@ -41,9 +45,21 @@ body{
    margin-top: 10px;
 }
 
+.divname{
+   display: flex;
+   flex: 1 1 auto;
+   width: 100%;
+}
+
+#formulaire_name{
+   flex: 1 1 auto;
+    width: 100%;
+}
+
 #inputpseudo{
    flex: 1 1 auto;
    width: 100%;
+   min-width: 200px;
    border-style: none;
    height: 30px;
    border-width: 0px;
@@ -59,6 +75,24 @@ body{
    outline: 0;
 }
 
+#loginLanguage {
+   flex: 1 1 auto;
+   max-width: 100px;
+   height: 30px;
+   border-width: 0px;
+   border-top-width: 2px;
+   border-bottom-width: 2px;
+   border-style: solid;
+   border-color: #CCC;
+   background-color: #EEE;
+   padding-left: 10px;
+}
+#loginLanguage:focus{
+   border-color: #59E;
+   outline: 0;
+}
+ 
+
 .chatpart{
    margin-left: 10px;
    margin-top: 10px;
@@ -66,7 +100,11 @@ body{
 }
 
 .chat{
-   max-width: 350px;
+   /*max-width: 350px;*/
+   flex: 1 1 auto;
+   width: 100%;
+   background-color: #EEE;
+   min-width: 200px;
 }
 
 #zone_chat ::-webkit-scrollbar-track {
@@ -100,11 +138,6 @@ body{
    font-size: 14px;
 }
 
-.chat{
-   background-color: #EEE;
-   width: 350px;
-}
-
 .senderMess{
    margin-left: 8px;
    margin-top: 5px;
@@ -121,10 +154,16 @@ body{
    flex: 1 1 auto;
    width: 100%;
 }
+.senderMess:focus{
+   border-color: #59E;
+   outline: 0;
+}
 
 #zone_chat{
    overflow-y: auto;
+   overflow-x: hidden;
    height: 400px;
+   max-width: 400px;
    margin-left: 10px;
    margin-left: 10px;
 }
