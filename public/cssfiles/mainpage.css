@@ -22,7 +22,8 @@ body{
    body {
      justify-content: normal;
    }
- }
+}
+
 
 .main-center{
    display: flex;
@@ -158,8 +159,10 @@ body{
 
 .fontMessage{
    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+   font: 16px 'Roboto', Arial;
    font-size: 14px;
 }
+
 
 .senderMess{
    margin-left: 8px;

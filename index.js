@@ -53,8 +53,10 @@ chat.on('connection', function (socket) {
 	allClients.push(socket);
 
 	socket.on('disconnect', function() {
-		console.log("un client s'est déconnecté :" + socket.pseudo);
-		chat.emit("client_left", socket.pseudo);
+		if(socket.pseudo != null){
+			console.log("un client s'est déconnecté :" + socket.pseudo);
+			chat.emit("client_left", socket.pseudo);
+		}
 		var i = allClients.indexOf(socket);
 		allClients.splice(i, 1);
 	 });
