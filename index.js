@@ -6,7 +6,7 @@ var querystring  =require("querystring");
 var favicon = require('serve-favicon');
 var path = require('path')
 
-var localPort = 8080
+var localPort = 8080;
 var PORT = process.env.PORT || localPort;
 console.log("le port de connection impossé est :" + process.env.PORT + " sinon le port par defaut est " + localPort);
 

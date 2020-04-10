@@ -114,9 +114,25 @@ body{
    min-width: 200px;
 }
 
-#zone_chat ::-webkit-scrollbar-track {
-   background: #CCC; 
- }
+#zone_chat{
+   scrollbar-color:#AAA #BBB;
+   scrollbar-width: thin;
+}
+
+/* Let's get this party started */
+#zone_chat::-webkit-scrollbar {
+   width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+   background-color: #BBB;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+   background: #AAA; 
+}
 
 .classContener{
    background-color: #CCC;
