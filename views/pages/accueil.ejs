@@ -65,7 +65,7 @@
                             <form action="/" method="post" id="formulaire_name">
                                 <input type="text" id="inputpseudo" placeholder="Enter your pseudo" size="20" autocomplete="off" maxlength="25" style="margin-left: 0px;"/>
                             </form>
-                            <select id="loginLanguage"><option class="langueoption">English</option><option class="langueoption">French</option></select>
+                            <select id="loginLanguage"><option class="langueoption">French</option><option class="langueoption">English</option></select>
                         </div>
                     </div>
                 </div>
@@ -83,13 +83,22 @@
     <script src="jsfiles/chat.js"></script>
     <script>
         $('#formulaire_name').submit(function () {
-            pseudo = $('#inputpseudo').val();
-            $('#inputpseudo').attr('placeholder', pseudo);
-            $('#inputpseudo').val('');
+            //pseudo = $('#inputpseudo').val();
+            //$('#inputpseudo').attr('placeholder', pseudo);
             $('#inputpseudo').blur();
             return false;
         });
-        //$('#inputpseudo').attr('value', 'new value');
+        $('#formulaire_name').focusout(function () {
+            if($('#inputpseudo').val().replace(/\s/g, '') == ''){
+                $('#inputpseudo').val('')
+            }else{
+                pseudo = $('#inputpseudo').val();
+                $('#inputpseudo').attr('placeholder', pseudo);
+                //$('#inputpseudo').val('');
+                //$('#inputpseudo').blur();
+                return false;
+            }
+        });
     </script>
 </body>
 </html>
