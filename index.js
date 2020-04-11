@@ -48,7 +48,7 @@ var allClients = []; //liste de tout les clients connecté.
 
 var chat = io.of("/chat");
 chat.on('connection', function (socket) {
-	console.log('Un client se connecte !');
+	//console.log('Un client se connecte !');
 
 	allClients.push(socket);
 

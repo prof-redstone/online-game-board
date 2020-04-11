@@ -65,6 +65,9 @@
                             <form action="/" method="post" id="formulaire_name">
                                 <input type="text" id="inputpseudo" placeholder="Enter your pseudo" size="20" autocomplete="off" maxlength="25" style="margin-left: 0px;"/>
                             </form>
+                            <div id="divcolormain">
+                                <div class="colorrect"></div>
+                            </div>
                             <select id="loginLanguage"><option class="langueoption">French</option><option class="langueoption">English</option></select>
                         </div>
                     </div>
@@ -89,8 +92,8 @@
             return false;
         });
         $('#formulaire_name').focusout(function () {
-            if($('#inputpseudo').val().replace(/\s/g, '') == ''){
-                $('#inputpseudo').val('')
+            if($('#inputpseudo').val().replace(/\s/g, '') == ''){//chek if inpute contain nothing or juste space
+                $('#inputpseudo').val('');
             }else{
                 pseudo = $('#inputpseudo').val();
                 $('#inputpseudo').attr('placeholder', pseudo);
