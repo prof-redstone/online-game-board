@@ -260,3 +260,31 @@ body{
    margin-top: 5px;
    margin-bottom: 5px;
 }
+
+strong.black{
+   color: black;
+}
+strong.pink{
+   color: rgb(255, 98, 195);
+}
+strong.yellow{
+   color: yellow;
+}
+strong.red{
+   color: red;
+}
+strong.green{
+   color: green;
+}
+strong.blue{
+   color: blue;
+}
+strong.purple{
+   color: purple;
+}
+strong.cyan{
+   color: cyan;
+}
+strong.orange{
+   color: rgb(255, 136, 0);
+}

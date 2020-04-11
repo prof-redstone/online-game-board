@@ -84,7 +84,7 @@ chat.on('connection', function (socket) {
 
 	socket.on('message', function(data){
 		console.log(socket.pseudo + " : " + data.message);
-		socket.broadcast.emit("message", {pseudo: data.pseudo, message: data.message})
+		socket.broadcast.emit("message", {pseudo: data.pseudo, message: data.message, color: data.color})
 	});
 
 	socket.on("CientPing", function(){

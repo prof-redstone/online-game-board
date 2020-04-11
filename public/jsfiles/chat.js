@@ -1,6 +1,7 @@
 console.log(location.protocol+"//" + url);
 var chatSocket = io.connect(location.protocol+"//" + url + "/chat"); 
 var pseudo;
+var colorpseudo = "black";
 var servEtatPing = 0;
 
 if(name == "undefined"){ //si le pseudo ne se trouve pas dans l'url
@@ -13,7 +14,7 @@ if(name == "undefined"){ //si le pseudo ne se trouve pas dans l'url
     pseudo = name;
     chatSocket.emit('nouveauPseudo', pseudo);
 }
-$('#inputpseudo').attr('placeholder', pseudo);
+$('#inputpseudo').attr('placeholder', pseudo);//on met le pseudo dans l'input
 
 chatSocket.on('PseudoUnvalide', function(Npseudo) { //le serveur renvoie le nouveaux pseudo, à changer
     pseudo = Npseudo;
@@ -23,8 +24,8 @@ chatSocket.on('PseudoUnvalide', function(Npseudo) { //le serveur renvoie le nouv
 
 // Quand on reçoit un message, on l'insère dans la page
 chatSocket.on('message', function(data) {
-    insereMessage(data.pseudo, data.message);
-    servEtatPing = 2;
+    insereMessage(data.pseudo, data.message, data.color);
+    servEtatPing = 2;//valeur abstraite
 })
 
 // Quand un nouveau client se connecte, on affiche l'information
@@ -43,14 +44,14 @@ chatSocket.on('client_left', function(pseudo) {
 // Lorsqu'on envoie le formulaire, on transmet le message et on l'affiche sur la page
 $('#formulaire_chat').submit(function () {
     var message = $('#message').val();
-    chatSocket.emit('message', {pseudo: pseudo, message: message}); // Transmet le message aux autres
+    chatSocket.emit('message', {pseudo: pseudo, message: message, color: colorpseudo}); // Transmet le message aux autres
     insereMessage(pseudo, message); // Affiche le message aussi sur notre page
     $('#message').val('').focus(); // Vide la zone de Chat et remet le focus dessus
     return false; // Permet de bloquer l'envoi "classique" du formulaire
 });
 
-function insereMessage(pseudo, message) {
-    $('#zone_chat').append('<p class="messChat fontMessage"><strong>' + pseudo + " :" + '</strong> ' + message + '</p>');
+function insereMessage(pseudo, message, color) {
+    $('#zone_chat').append('<p class="messChat fontMessage"><strong class="' + color + '" >' + pseudo + " :" + '</strong> ' + message + '</p>');
     element = document.getElementById('zone_chat');
     element.scrollTop = element.scrollHeight;
 }
