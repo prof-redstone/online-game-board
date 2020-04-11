@@ -109,9 +109,11 @@ body{
 }
 
 #divcolormain {
+   display: flex;
    flex: 1 1 auto;
    max-width: 100px;
    height: 17px;
+   width: 17px;
    padding-right: 10px;
    padding-top: 4px;
    padding-bottom: 5px;
@@ -122,6 +124,8 @@ body{
    border-color: #CCC;
    background-color: #EEE;
    padding-left: 10px;
+   justify-content: center;
+
 }
 #divcolormain:hover{
    border-color: #AAA;
@@ -136,6 +140,30 @@ body{
    width: 17px; 
    height: 17px; 
    background-color: blue;
+   border-radius: 2px;
+}
+
+.propcolor{
+   height: 60px;
+   width: 60px;
+   margin-top: 20px;
+   background-color: #BBB;
+   display: none;
+   position: absolute;
+   z-index: 10px;
+   padding: 10px;
+   border-radius: 5px;
+}
+
+#divcolormain:hover .propcolor{
+   display: inline-block;
+}
+
+.propcolor .color{
+   padding: 0px;
+   border: 3px;
+   width: 17px;
+   height: 17px;
    border-radius: 2px;
 }
  

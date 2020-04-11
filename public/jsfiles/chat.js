@@ -62,7 +62,7 @@ setInterval(() => { //function qui détecte la perte de connection et averti l'u
         console.log("problème de connection au serveur, vérifier votre connection a internet.")
         $("#message").css("background-color", "#FCC")
     }else{
-        $("#message").css("background-color", "#FFF")
+        $("#message").css("background-color", "#EEE")
     }
 }, 5000);
 
