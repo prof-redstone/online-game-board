@@ -68,15 +68,15 @@
                             <div id="divcolormain">
                                 <div class="colorrect"></div>
                                 <div class="propcolor">
-                                    <button class="color white" style="background-color: white;"></button>
-                                    <button class="color pink" style="background-color: rgb(255, 98, 195);"></button>
-                                    <button class="color yellow" style="background-color: yellow;"></button>
-                                    <button class="color red" style="background-color: red;"></button>
-                                    <button class="color green" style="background-color: green;"></button>
-                                    <button class="color blue" style="background-color: blue;"></button>
-                                    <button class="color purple" style="background-color: purple;"></button>
-                                    <button class="color cyan" style="background-color: cyan;"></button>
-                                    <button class="color orange" style="background-color: orange;"></button>
+                                    <button class="color black" style="background-color: black;" onclick="changeColorPseudo(1)"></button>
+                                    <button class="color pink" style="background-color: rgb(255, 98, 195);"onclick="changeColorPseudo(2)"></button>
+                                    <button class="color yellow" style="background-color: yellow;"onclick="changeColorPseudo(3)"></button>
+                                    <button class="color red" style="background-color: red;" onclick="changeColorPseudo(4)"></button>
+                                    <button class="color green" style="background-color: green;" onclick="changeColorPseudo(5)"></button>
+                                    <button class="color blue" style="background-color: blue;" onclick="changeColorPseudo(6)"></button>
+                                    <button class="color purple" style="background-color: purple;" onclick="changeColorPseudo(7)"></button>
+                                    <button class="color cyan" style="background-color: cyan;" onclick="changeColorPseudo(8)"></button>
+                                    <button class="color orange" style="background-color: rgb(255, 136, 0);" onclick="changeColorPseudo(9)"></button>
                                 </div>
                             </div>
                             <select id="loginLanguage"><option class="langueoption">French</option><option class="langueoption">English</option></select>
@@ -113,6 +113,39 @@
                 return false;
             }
         });
+        function changeColorPseudo(color){
+            var colorrectcolor;
+            switch(color){
+                case 1 :
+                    colorrectcolor = "black";
+                    break;
+                case 2 :
+                    colorrectcolor = "rgb(255, 98, 195)";
+                    break;
+                case 3 :
+                    colorrectcolor = "yellow";
+                    break;
+                case 4 :
+                    colorrectcolor = "red";
+                    break;
+                case 5 :
+                    colorrectcolor = "green";
+                    break;
+                case 6 :
+                    colorrectcolor = "blue";
+                    break;
+                case 7 :
+                    colorrectcolor = "purple";
+                    break;
+                case 8 :
+                    colorrectcolor = "cyan";
+                    break;
+                case 9 :
+                    colorrectcolor = "rgb(255, 136, 0)";
+                    break;
+            }
+            $('.colorrect').css("background-color", colorrectcolor);
+        }
     </script>
 </body>
 </html>

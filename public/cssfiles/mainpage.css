@@ -128,10 +128,6 @@ body{
 
 }
 #divcolormain:hover{
-   border-color: #AAA;
-   outline: 0;
-}
-#divcolormain:focus{
    border-color: #59E;
    outline: 0;
 }
@@ -139,7 +135,7 @@ body{
 .colorrect{
    width: 17px; 
    height: 17px; 
-   background-color: blue;
+   background-color: black;
    border-radius: 2px;
 }
 
