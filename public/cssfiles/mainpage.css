@@ -55,6 +55,7 @@ body{
 
 .loginpart{
    margin-top: 10px;
+   max-width: 400px;
 }
 
 .divname{
