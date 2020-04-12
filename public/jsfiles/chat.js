@@ -3,6 +3,7 @@ var chatSocket = io.connect(location.protocol+"//" + url + "/chat");
 var pseudo;
 var colorpseudo = "black";
 var servEtatPing = 0;
+var date = new Date();
 
 if(name == "undefined"){ //si le pseudo ne se trouve pas dans l'url
     pseudo = prompt('Quel est votre pseudo ?');
@@ -51,7 +52,7 @@ $('#formulaire_chat').submit(function () {
 });
 
 function insereMessage(pseudo, message, color) {
-    $('#zone_chat').append('<p class="messChat fontMessage"><strong class="' + color + '" >' + pseudo + " :" + '</strong> ' + message + '</p>');
+    $('#zone_chat').append('<p class="messChat fontMessage">'+ date.getHours() + ":"+ date.getMinutes()+ " " +'<strong class="' + color + '" >' + pseudo + " :" + '</strong> ' + message + '</p>');
     element = document.getElementById('zone_chat');
     element.scrollTop = element.scrollHeight;
 }
@@ -65,6 +66,10 @@ setInterval(() => { //function qui détecte la perte de connection et averti l'u
     }else{
         $("#message").css("background-color", "#EEE")
     }
+}, 5000);
+
+setInterval(() => { //function qui détecte la perte de connection et averti l'utilisateur.
+    date = new Date();
 }, 5000);
 
 chatSocket.on("serveurPing", function(NBusers){
