@@ -72,7 +72,7 @@ chat.on('connection', function (socket) {
 			console.log("le pseudo du client est : " + pseudo);
 			socket.pseudo = pseudo;
 			socket.broadcast.emit("nouveau_client", socket.pseudo);
-			socket.emit("message", {pseudo: "serveur", message:"tu es bien connecté au serveur !"})
+			socket.emit("message", {pseudo: "serveur", message:"you are connected to the server !"})
 		}else{//le pseudo n'est pas bon, a modifier pour laisser le client choisire.
 			var num = Math.floor(Math.random() * Math.floor(100));
 			num = num.toString();

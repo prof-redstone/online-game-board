@@ -181,7 +181,7 @@ body{
    flex: 1 1 auto;
    width: 100%;
    background-color: #EEE;
-   min-width: 200px;
+   min-width: 170px;
 }
 
 #zone_chat{
@@ -323,4 +323,38 @@ strong.orange{
 #btncreatroom{
    background-color: #5bc0de;
    border-color: #46b8da;
+}
+
+.divjoinroom{
+   color: #fff;
+   border-style: solid;
+   border-radius: 5px;
+   padding: 10px 16px;
+   font-size: 18px;
+   margin-top: 10px;
+   background-color: #5bc0de;
+   border-color: #46b8da;
+   font-family: roboto;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-wrap: wrap;
+}
+
+#inproompass{
+   background-color: #3ba5d6;
+   color: #ddd;
+   border-style: none;
+   border-radius: 2px;
+   padding-left: 5px;
+   padding-top: 2px;
+   padding-bottom: 2px;
+}
+
+#inproompass::placeholder{
+   color: #ddd;
+}
+
+#inproompass:focus{
+   outline: 0;
 }
