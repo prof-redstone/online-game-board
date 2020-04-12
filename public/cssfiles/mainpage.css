@@ -18,9 +18,12 @@ body{
     justify-content: center;
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 755px) {
    body {
      justify-content: normal;
+   }
+   #zone_chat{
+      position: absolute;
    }
 }
 
@@ -47,6 +50,7 @@ body{
    display: flex; 
    padding: 5px;
    background-color: #EEE;
+   border-radius: 5px;
 }
 
 .loginpart{
@@ -61,13 +65,14 @@ body{
 
 #formulaire_name{
    flex: 1 1 auto;
-    width: 100%;
+   width: 100%;
+   margin-bottom: 0px;
 }
 
 #inputpseudo{
    flex: 1 1 auto;
    width: 100%;
-   min-width: 200px;
+   min-width: 50px;
    border-style: none;
    height: 30px;
    border-width: 0px;
@@ -287,4 +292,34 @@ strong.cyan{
 }
 strong.orange{
    color: rgb(255, 136, 0);
+}
+
+.btnPLAY{
+   width: 100%;
+   color: #fff;
+   border-style: solid;
+   border-radius: 5px;
+   padding: 10px 16px;
+   font-size: 18px;
+   margin-top: 10px;
+}
+.btnPLAY:focus{
+   outline: 0;
+}
+
+#btnnormrules{
+   background-color: #5cb85c;
+   border-color: #4cae4c;
+
+}
+
+#btnspecrules{
+   background-color: #ee8631;
+   border-color: #db741f;
+
+}
+
+#btncreatroom{
+   background-color: #5bc0de;
+   border-color: #46b8da;
 }

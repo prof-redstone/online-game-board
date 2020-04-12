@@ -45,7 +45,7 @@ chatSocket.on('client_left', function(pseudo) {
 $('#formulaire_chat').submit(function () {
     var message = $('#message').val();
     chatSocket.emit('message', {pseudo: pseudo, message: message, color: colorpseudo}); // Transmet le message aux autres
-    insereMessage(pseudo, message); // Affiche le message aussi sur notre page
+    insereMessage(pseudo, message, colorpseudo); // Affiche le message aussi sur notre page
     $('#message').val('').focus(); // Vide la zone de Chat et remet le focus dessus
     return false; // Permet de bloquer l'envoi "classique" du formulaire
 });

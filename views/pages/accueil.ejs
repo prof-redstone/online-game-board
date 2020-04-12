@@ -46,8 +46,10 @@
                         <div class="classContener">
                             <p style="margin: 0px; padding-top: 5px; display: flex; justify-content: center; font-family: Arial, Helvetica, sans-serif; font-weight: bold;">PUBLIC CHAT !</p>
                             <div class="separationbarreO"></div>
-                            <section id="zone_chat">
-                            </section>
+                            <div id="parentzonechat" style="height: 400px;">
+                                <section id="zone_chat">
+                                </section>
+                            </div>
                         </div>
                         <form action="/" method="post" id="formulaire_chat">
                             <input type="text" class="senderMess" name="message" id="message" placeholder="your message..." size="50" autocomplete="off" style="margin-left: 0px;"/>
@@ -79,8 +81,27 @@
                                     <button class="color orange" style="background-color: rgb(255, 136, 0);" onclick="changeColorPseudo(9)"></button>
                                 </div>
                             </div>
-                            <select id="loginLanguage"><option class="langueoption">French</option><option class="langueoption">English</option></select>
+                            <select id="loginLanguage"><option class="langueoption">Français</option><option class="langueoption">English</option></select>
                         </div>
+                    </div>
+                    <div class="mainplaybutton">
+                        <button class="btnPLAY" id="btnnormrules">
+                            <div>
+                                PLAY (normal game) <br>
+                                <div>x player</div>
+                            </div>
+                        </button>
+                        <button class="btnPLAY" id="btnspecrules">
+                            <div>
+                                PLAY (special rules) <br>
+                                <div>x player</div>
+                            </div>
+                        </button>
+                        <button class="btnPLAY" id="btncreatroom">
+                            <div>
+                                CREATE PRIVATE ROOM
+                            </div>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -96,6 +117,14 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="jsfiles/chat.js"></script>
     <script>
+        if($("#zone_chat").css("position") == "absolute"){
+            console.log($("#parentzonechat").css("width").replace(/[^-\d\.]/g, ''));
+            var temp = $("#parentzonechat").css("width").replace(/[^-\d\.]/g, '') - 18;
+            $("#zone_chat").css("width", temp + "px");
+        }
+        
+
+
         $('#formulaire_name').submit(function () {
             //pseudo = $('#inputpseudo').val();
             //$('#inputpseudo').attr('placeholder', pseudo);
@@ -104,7 +133,6 @@
         });
         $('#formulaire_name').focusout(function () {
             if($('#inputpseudo').val().replace(/\s/g, '') == ''){//chek if inpute contain nothing or juste space
-                $('#inputpseudo').val('');
             }else{
                 pseudo = $('#inputpseudo').val();
                 $('#inputpseudo').attr('placeholder', pseudo);
