@@ -45,11 +45,20 @@ chatSocket.on('client_left', function(pseudo) {
 // Lorsqu'on envoie le formulaire, on transmet le message et on l'affiche sur la page
 $('#formulaire_chat').submit(function () {
     var message = $('#message').val();
-    chatSocket.emit('message', {pseudo: pseudo, message: message, color: colorpseudo}); // Transmet le message aux autres
-    insereMessage(pseudo, message, colorpseudo); // Affiche le message aussi sur notre page
+    if(messvalide(message)){
+        chatSocket.emit('message', {pseudo: pseudo, message: message, color: colorpseudo}); // Transmet le message aux autres
+        insereMessage(pseudo, message, colorpseudo); // Affiche le message aussi sur notre page
+    }
     $('#message').val('').focus(); // Vide la zone de Chat et remet le focus dessus
     return false; // Permet de bloquer l'envoi "classique" du formulaire
 });
+
+function messvalide(message){
+    if(message == ""){
+        return false;
+    }
+    return true
+}
 
 function insereMessage(pseudo, message, color) {
     $('#zone_chat').append('<p class="messChat fontMessage">'+ date.getHours() + ":"+ date.getMinutes()+ " " +'<strong class="' + color + '" >' + pseudo + " :" + '</strong> ' + message + '</p>');
