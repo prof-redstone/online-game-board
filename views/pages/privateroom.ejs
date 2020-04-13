@@ -44,7 +44,7 @@
                 <div class="chatpart" style="height: 465;">
                     <div class="chat">
                         <div class="classContener">
-                            <p style="margin: 0px; padding-top: 5px; display: flex; justify-content: center; font-family: Arial, Helvetica, sans-serif; font-weight: bold;">PUBLIC CHAT !</p>
+                            <p style="margin: 0px; padding-top: 5px; display: flex; justify-content: center; font-family: Arial, Helvetica, sans-serif; font-weight: bold;">ROOM CHAT !</p>
                             <div class="separationbarreO"></div>
                             <div id="parentzonechat" style="height: 400px;">
                                 <section id="zone_chat">
@@ -77,67 +77,7 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="jsfiles/chat.js"></script>
     <script>
-        
-        
-
-        $('#formulaire_name').submit(function () {
-            //pseudo = $('#inputpseudo').val();
-            //$('#inputpseudo').attr('placeholder', pseudo);
-            $('#inputpseudo').blur();
-            return false;
-        });
-        $('#formulaire_name').focusout(function () {
-            if($('#inputpseudo').val().replace(/\s/g, '') == ''){//chek if inpute contain nothing or juste space
-            }else{
-                pseudo = $('#inputpseudo').val();
-                $('#inputpseudo').attr('placeholder', pseudo);
-                //$('#inputpseudo').val('');
-                //$('#inputpseudo').blur();
-                return false;
-            }
-        });
-        function changeColorPseudo(color){
-            var colorrectcolor;
-            switch(color){
-                case 1 :
-                    colorrectcolor = "black";
-                    colorpseudo = "black"
-                    break;
-                case 2 :
-                    colorrectcolor = "rgb(255, 98, 195)";
-                    colorpseudo = "pink"
-                    break;
-                case 3 :
-                    colorrectcolor = "yellow";
-                    colorpseudo = "yellow"
-                    break;
-                case 4 :
-                    colorrectcolor = "red";
-                    colorpseudo = "red"
-                    break;
-                case 5 :
-                    colorrectcolor = "green";
-                    colorpseudo = "green"
-                    break;
-                case 6 :
-                    colorrectcolor = "blue";
-                    colorpseudo = "blue"
-                    break;
-                case 7 :
-                    colorrectcolor = "purple";
-                    colorpseudo = "purple"
-                    break;
-                case 8 :
-                    colorrectcolor = "cyan";
-                    colorpseudo = "cyan"
-                    break;
-                case 9 :
-                    colorrectcolor = "rgb(255, 136, 0)";
-                    colorpseudo = "orange"
-                    break;
-            }
-            $('.colorrect').css("background-color", colorrectcolor);
-        }
+       
     </script>
 </body>
 </html>

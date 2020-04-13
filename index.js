@@ -21,7 +21,7 @@ app.get('/', function(req, res){
 app.get('/pr', function(req, res){
 	var roomname = randomstring(6);
 	console.log("room "+roomname+" are created");
-	res.render('pages/accueil.ejs', {url: req.headers.host, name: "anonymous#"+Math.floor(Math.random() * Math.floor(1000)), roomname: roomname });
+	res.render('pages/privateroom.ejs', {url: req.headers.host, name: "anonymous#"+Math.floor(Math.random() * Math.floor(1000)), roomname: roomname });
 });
 
 app.use(express.static('public'));//pour tout les fichier public
