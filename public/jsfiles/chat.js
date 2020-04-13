@@ -66,6 +66,12 @@ function insereMessage(pseudo, message, color) {
     element.scrollTop = element.scrollHeight;
 }
 
+if($("#zone_chat").css("position") == "absolute"){//si la fennettre est en format mobile on chage la taille
+    console.log($("#parentzonechat").css("width").replace(/[^-\d\.]/g, '')); //200px → 200
+    var temp = $("#parentzonechat").css("width").replace(/[^-\d\.]/g, '') - 18;
+    $("#zone_chat").css("width", temp + "px");
+}
+
 setInterval(() => { //function qui détecte la perte de connection et averti l'utilisateur.
     servEtatPing --
     chatSocket.emit("CientPing");

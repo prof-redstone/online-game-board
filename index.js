@@ -14,19 +14,14 @@ var server = http.createServer(app);
 
 
 app.get('/', function(req, res){
-	console.log(req.headers.host)
+	//console.log(req.headers.host)
 	res.render('pages/accueil.ejs', {url: req.headers.host, name: "anonymous#"+Math.floor(Math.random() * Math.floor(1000))});
 });
 
-app.get('/socket.io', function(req, res){
-	var param = querystring.parse(url.parse(req.url).query);
-	var name;
-	if("name" in param){
-		name = param["name"]
-	}else{
-		name = "undefined";
-	}
-	res.render("pages/socket.io.ejs", {url: "test-1-tom.herokuapp.com", name: name});
+app.get('/pr', function(req, res){
+	var roomname = randomstring(6);
+	console.log("room "+roomname+" are created");
+	res.render('pages/accueil.ejs', {url: req.headers.host, name: "anonymous#"+Math.floor(Math.random() * Math.floor(1000)), roomname: roomname });
 });
 
 app.use(express.static('public'));//pour tout les fichier public
@@ -38,18 +33,18 @@ app.use(function(req, res, next){ //a mettre juste avant app.listen
 	res.status(404).send('Page introuvable ! Votre clavier a fourché. ');
 })
 
+server.listen(PORT);
 
 // Chargement de socket.io
 
 //partie de gestion d'envoie et de resception de message du chat.
 
 var io = require('socket.io')(server);
+
 var allClients = []; //liste de tout les clients connecté.
 
 var chat = io.of("/chat");
-chat.on('connection', function (socket) {
-	//console.log('Un client se connecte !');
-
+chat.on('connection', function (socket){
 	allClients.push(socket);
 
 	socket.on('disconnect', function() {
@@ -90,7 +85,28 @@ chat.on('connection', function (socket) {
 	socket.on("CientPing", function(){
 		socket.emit("serveurPing", allClients.length); //200 is ok !
 	})
-
 });
 
-server.listen(PORT);
+
+function randomstring(length){
+	var result = "";
+	var characters = "abcdefghijklmnopqrstuvwxyz0123456789";
+	var charactersLength = characters.length;
+	for ( var i = 0; i < length; i++ ) {
+		result += characters.charAt(Math.floor(Math.random() * charactersLength));
+	}
+	return result;
+}
+
+
+var privateroom = [];
+
+
+
+
+
+
+
+
+
+
