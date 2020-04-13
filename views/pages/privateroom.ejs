@@ -71,7 +71,10 @@
     <script>
         //script qui récupère tout les éléments de ejs du serveur
         var url = "<%= url %>";
-        var name = "<%= name %>";
+        var pseudo = "<%= pseudo %>";
+        var colorpseudo = "<%= colorpseudo %>"
+        var roomname = "<%= roomname %>"
+        console.log(pseudo + " " + colorpseudo + " " + roomname);
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>

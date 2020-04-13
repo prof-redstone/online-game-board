@@ -106,8 +106,7 @@
                             <div class="divjoinroom">
                                 <div style="padding-left: 10px; padding-right: 10px; text-align: center">JOIN PRIVATE ROOM</div>
                                 <div style="display: inline-block;">
-                                    <form style="margin: 0px;"action="/" >
-                                        <label for="r"></label>
+                                    <form style="margin: 0px;" action="/" id="joinprform">
                                         <input id="inproompass" name="r" type="text" placeholder="room" size="8" autocomplete="off" maxlength="7" style="margin-left: 0px;"/>
                                     </form>
                                 </div>
@@ -187,6 +186,12 @@
             }
             $('.colorrect').css("background-color", colorrectcolor);
         }
+
+        $('#joinprform').submit(function () { //valide l'entrer du nom
+            var room =  $('#inproompass').val();
+            document.location.href = "/pr" + "?ps=" + pseudo + "&" + "co=" + colorpseudo + "&" + "room=" + room;
+            return false;
+        });
     </script>
 </body>
 </html>

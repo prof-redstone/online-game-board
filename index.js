@@ -19,9 +19,29 @@ app.get('/', function(req, res){
 });
 
 app.get('/pr', function(req, res){
-	var roomname = randomstring(6);
-	console.log("room "+roomname+" are created");
-	res.render('pages/privateroom.ejs', {url: req.headers.host, name: "anonymous#"+Math.floor(Math.random() * Math.floor(1000)), roomname: roomname });
+	var param = querystring.parse(url.parse(req.url).query);
+	var pseudo;
+	var colorpseudo;
+	var roomname;
+	if("ps" in param){
+		pseudo = param["ps"]
+	}else{
+		pseudo = "anonymous#"+Math.floor(Math.random() * Math.floor(1000));
+	}
+
+	if("co" in param){
+		colorpseudo = param["co"]
+	}else{
+		colorpseudo = "black";
+	}
+
+	if("room" in param){
+		roomname = param["room"];
+	}else{
+		roomname = "undefined";
+	}
+	//console.log("room "+roomname+" are created");
+	res.render('pages/privateroom.ejs', {url: req.headers.host, pseudo: pseudo, colorpseudo: colorpseudo, roomname: roomname });
 });
 
 app.use(express.static('public'));//pour tout les fichier public
