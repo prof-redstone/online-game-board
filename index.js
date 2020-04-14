@@ -15,13 +15,7 @@ var server = http.createServer(app);
 
 app.get('/', function(req, res){
 	var param = querystring.parse(url.parse(req.url).query);
-	var roomname;
-	if("room" in param){
-		roomname = param["room"];
-	}else{
-		roomname = undefined;
-	}
-	res.render('pages/accueil.ejs', {url: req.headers.host, name: "anonymous#"+Math.floor(Math.random() * Math.floor(1000)), roomname: roomname});
+	res.render('pages/accueil.ejs', {url: req.headers.host, name: "anonymous"+Math.floor(Math.random() * Math.floor(1000))});
 });
 
 app.get('/pr', function(req, res){

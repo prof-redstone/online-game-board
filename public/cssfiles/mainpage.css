@@ -325,6 +325,10 @@ strong.orange{
    border-color: #46b8da;
 }
 
+#btncreatroom:hover{
+   background-color: #30a5c9;
+}
+
 .divjoinroom{
    color: #fff;
    border-style: solid;
@@ -339,6 +343,10 @@ strong.orange{
    align-items: center;
    justify-content: center;
    flex-wrap: wrap;
+}
+
+.divjoinroom:hover #inproompass{
+   background-color: #2b8fbd;
 }
 
 #inproompass{

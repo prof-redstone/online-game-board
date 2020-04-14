@@ -107,7 +107,7 @@
                                 <div style="padding-left: 10px; padding-right: 10px; text-align: center">JOIN PRIVATE ROOM</div>
                                 <div style="display: inline-block;">
                                     <form style="margin: 0px;" action="/" id="joinprform">
-                                        <input id="inproompass" name="r" type="text" placeholder="room" size="8" autocomplete="off" maxlength="7" style="margin-left: 0px;"/>
+                                        <input id="inproompass" name="r" type="text" placeholder="room" size="8" autocomplete="off" maxlength="6" style="margin-left: 0px;"/>
                                     </form>
                                 </div>
                             </div>
@@ -122,7 +122,6 @@
         //script qui récupère tout les éléments ejs du serveur
         var url = "<%= url %>";
         var name = "<%= name %>";
-        var roomname = "<%= roomname %>"
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
@@ -187,17 +186,17 @@
             $('.colorrect').css("background-color", colorrectcolor);
         }
 
-        $('#joinprform').submit(function () { //valide l'entrer du nom
+        $('#joinprform').submit(function () { //pour rejoindre une room
             var room =  $('#inproompass').val();
-            document.location.href = "/pr" + "?ps=" + pseudo + "&" + "co=" + colorpseudo + "&" + "room=" + room;
+            if(room.length > 5){
+            document.location.href = "/pr" + "?" + "room=" + room + "&" + "ps=" + pseudo + "&" + "co=" + colorpseudo;
+            }
             return false;
         });
 
-        if(roomname != ""){
-            //console.log("room indiqué")
-            console.log(roomname)
-            $('#inproompass').val(roomname);
-        }
+        $('#btncreatroom').click(function() {
+            document.location.href = "/pr" + "?" + "ps=" + pseudo + "&" + "co=" + colorpseudo;
+        });
     </script>
 </body>
 </html>
