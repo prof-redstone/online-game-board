@@ -28,17 +28,24 @@ app.get('/pr', function(req, res){
 	var param = querystring.parse(url.parse(req.url).query);
 	var pseudo;
 	var colorpseudo;
+	var room = false;
 	//var roomname;
-	if("ps" in param){
+	if("ps" in param){ //pseudo
 		pseudo = param["ps"]
 	}else{
 		pseudo = "anonymous#"+Math.floor(Math.random() * Math.floor(1000));
 	}
 
-	if("co" in param){
+	if("co" in param){//color of pseudo
 		colorpseudo = param["co"]
 	}else{
 		colorpseudo = "black";
+	}
+
+	if("room" in param){
+		room = param["room"];
+	}else{
+		room = false
 	}
 
 	/*if("room" in param){
@@ -47,7 +54,7 @@ app.get('/pr', function(req, res){
 		roomname = "undefined";
 	}*/
 	//console.log("room "+roomname+" are created");
-	res.render('pages/privateroom.ejs', {url: req.headers.host, pseudo: pseudo, colorpseudo: colorpseudo });
+	res.render('pages/privateroom.ejs', {url: req.headers.host, pseudo: pseudo, colorpseudo: colorpseudo, roomcode: room});
 });
 
 app.use(express.static('public'));//pour tout les fichiers publics
@@ -129,6 +136,7 @@ pr.on('connection', function (socket){
 
 	socket.on("join_room", room => {
 		socket.join(room);
+		socket.emit("log", "tu as rejoins la room " + room)
 	});
 
 	socket.on("message", ({ room, message }) => {
@@ -159,10 +167,6 @@ pr.on('connection', function (socket){
 		//socket.join(roomcode);
 		
 		console.log(NumClientsInRoom("/privateroom", roomcode))
-	});
-
-	socket.on('roomjoin', function(roomcode){
-		socket.join(roomcode);
 	});
 
 });

@@ -1,21 +1,30 @@
+
 var namespace = "/privateroom";
 var roomSocket = io.connect(location.protocol+"//" + url + namespace); 
-var roomcode;
-var roomcreate = false;
 console.log("privateroom.js chargé")
 
-
-roomSocket.emit('roomcodeopen', "111" /*randomstring(6)*/);
+if(roomcode == "false"){
+	roomSocket.emit('roomcodeopen', randomstring(6));
+}else{
+	console.log(roomcode);
+	roomSocket.emit("join_room", roomcode);
+}
 
 roomSocket.on('roomcodeopen', function(data) {
     console.log(data);
     if(data.etat == true){
-		console.log("putain le code est bon les gas !")
+		console.log("code bon")
 		console.log(data.code)
 		roomcode = data.code;
+		roomSocket.emit("join_room", roomcode);
     }else{
-        console.log("merde le code n'est pas bon !")
+		console.log("code pas bon");
+		roomSocket.emit('roomcodeopen', randomstring(6));
     }
+});
+
+roomSocket.on('log', function(message) {
+    console.log(message);
 })
 
 
