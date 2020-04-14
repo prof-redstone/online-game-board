@@ -1,7 +1,8 @@
 console.log(location.protocol+"//" + url);
-var chatSocket = io.connect(location.protocol+"//" + url + "/chat"); 
-var servEtatPing = 0;
-var date = new Date();
+var namespace = "/chat";
+var chatSocket = io.connect(location.protocol+"//" + url + namespace); 
+var servEtatPing = 1;
+var date = new Date(); //pour l'heure sur les messages
 
 
 // Quand on reçoit un message, on l'insère dans la page
@@ -17,13 +18,14 @@ chatSocket.on('nouveau_client', function(pseudo) {
     element.scrollTop = element.scrollHeight;
 })
 
+//quand un client part 
 chatSocket.on('client_left', function(pseudo) {
     $('#zone_chat').append('<p class="chatmessNewClient messChat"><em>' + pseudo + ' a quitté le chat !</em></p>');
     element = document.getElementById('zone_chat');
     element.scrollTop = element.scrollHeight;
 })
 
-// Lorsqu'on envoie le formulaire, on transmet le message et on l'affiche sur la page
+// Lorsqu'on envoie un message, on transmet le message et on l'affiche sur la page
 $('#formulaire_chat').submit(function () {
     var message = $('#message').val();
     if(messvalide(message)){
@@ -48,7 +50,7 @@ function insereMessage(pseudo, message, color) {
 }
 
 if($("#zone_chat").css("position") == "absolute"){//si la fennettre est en format mobile on chage la taille
-    console.log($("#parentzonechat").css("width").replace(/[^-\d\.]/g, '')); //200px → 200
+    console.log($("#parentzonechat").css("width").replace(/[^-\d\.]/g, '')); //replace 200px → 200
     var temp = $("#parentzonechat").css("width").replace(/[^-\d\.]/g, '') - 18;
     $("#zone_chat").css("width", temp + "px");
 }
@@ -64,11 +66,11 @@ setInterval(() => { //function qui détecte la perte de connection et averti l'u
     }
 }, 5000);
 
-setInterval(() => { //function qui détecte la perte de connection et averti l'utilisateur.
+setInterval(() => { //function qui met a jours l'heure
     date = new Date();
 }, 5000);
 
-chatSocket.on("serveurPing", function(NBusers){
+chatSocket.on("serveurPing", function(/*NBusers*/){ 
     servEtatPing = 2;
-    $("#message").attr("placeholder", NBusers + " users are connected")
+    //$("#message").attr("placeholder", NBusers + " users are connected")
 });

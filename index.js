@@ -14,15 +14,21 @@ var server = http.createServer(app);
 
 
 app.get('/', function(req, res){
-	//console.log(req.headers.host)
-	res.render('pages/accueil.ejs', {url: req.headers.host, name: "anonymous#"+Math.floor(Math.random() * Math.floor(1000))});
+	var param = querystring.parse(url.parse(req.url).query);
+	var roomname;
+	if("room" in param){
+		roomname = param["room"];
+	}else{
+		roomname = undefined;
+	}
+	res.render('pages/accueil.ejs', {url: req.headers.host, name: "anonymous#"+Math.floor(Math.random() * Math.floor(1000)), roomname: roomname});
 });
 
 app.get('/pr', function(req, res){
 	var param = querystring.parse(url.parse(req.url).query);
 	var pseudo;
 	var colorpseudo;
-	var roomname;
+	//var roomname;
 	if("ps" in param){
 		pseudo = param["ps"]
 	}else{
@@ -35,16 +41,16 @@ app.get('/pr', function(req, res){
 		colorpseudo = "black";
 	}
 
-	if("room" in param){
+	/*if("room" in param){
 		roomname = param["room"];
 	}else{
 		roomname = "undefined";
-	}
+	}*/
 	//console.log("room "+roomname+" are created");
-	res.render('pages/privateroom.ejs', {url: req.headers.host, pseudo: pseudo, colorpseudo: colorpseudo, roomname: roomname });
+	res.render('pages/privateroom.ejs', {url: req.headers.host, pseudo: pseudo, colorpseudo: colorpseudo });
 });
 
-app.use(express.static('public'));//pour tout les fichier public
+app.use(express.static('public'));//pour tout les fichiers publics
 
 app.use(favicon(path.join(__dirname, 'public/imgfiles', 'favicon.ico')))//pour la requete de la favicon
 
@@ -108,21 +114,71 @@ chat.on('connection', function (socket){
 });
 
 
-function randomstring(length){
-	var result = "";
-	var characters = "abcdefghijklmnopqrstuvwxyz0123456789";
-	var charactersLength = characters.length;
-	for ( var i = 0; i < length; i++ ) {
-		result += characters.charAt(Math.floor(Math.random() * charactersLength));
+
+
+var pr = io.of("/privateroom");
+
+pr.on('connection', function (socket){
+
+	socket.on('disconnect', function() {
+		if(socket.pseudo != null){
+			console.log("un client s'est déconnecté :" + socket.pseudo);
+			//chat.emit("client_left", socket.pseudo);
+		}
+	 });
+
+	socket.on("join_room", room => {
+		socket.join(room);
+	});
+
+	socket.on("message", ({ room, message }) => {
+		socket.to(room).emit("message", {
+			message,
+			name: "Friend"
+		});
+	});
+
+	socket.on('message', function(data){
+		//console.log(socket.pseudo + " : " + data.message);
+		socket.to(room).emit("message", {pseudo: data.pseudo, message: data.message, color: data.color})
+	});
+
+	socket.on("CientPing", function(){
+		socket.emit("serveurPing", /*allClients.length*/{oui: true}); //200 is ok !
+		//console.log("caca");
+	})
+
+	socket.on('roomcodeopen', function(roomcode){
+		console.log(roomcode);
+		if(NumClientsInRoom("/privateroom", roomcode) == 0){
+			//socket.join(roomcode);
+			socket.emit("roomcodeopen", {code: roomcode, etat: true})
+		}else{
+			socket.emit("roomcodeopen", {code: roomcode, etat: false})
+		}
+		//socket.join(roomcode);
+		
+		console.log(NumClientsInRoom("/privateroom", roomcode))
+	});
+
+	socket.on('roomjoin', function(roomcode){
+		socket.join(roomcode);
+	});
+
+});
+
+
+function NumClientsInRoom(namespace, room) {
+	var clients = io.nsps[namespace].adapter.rooms[room];
+	//console.log(clients);
+	if(clients == undefined){
+		console.log(0)
+		return 0
+	}else{
+		console.log(clients.length)
+		return clients.length;
 	}
-	return result;
 }
-
-
-var privateroom = [];
-
-
-
 
 
 

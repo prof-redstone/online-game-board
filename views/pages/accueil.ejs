@@ -112,6 +112,11 @@
                                 </div>
                             </div>
                         </div>
+                        <button class="btnPLAY" style="background-color: red;">
+                            <div>
+                                Click Hehe To Join Your Friends
+                            </div>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -119,15 +124,15 @@
     </div>
     
     <script>
-        //script qui récupère tout les éléments de ejs du serveur
+        //script qui récupère tout les éléments ejs du serveur
         var url = "<%= url %>";
         var name = "<%= name %>";
+        var roomname = "<%= roomname %>"
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="jsfiles/chat.js"></script>
     <script>
-
         $('#formulaire_name').submit(function () { //valide l'entrer du nom
             //pseudo = $('#inputpseudo').val();
             //$('#inputpseudo').attr('placeholder', pseudo);
@@ -192,6 +197,12 @@
             document.location.href = "/pr" + "?ps=" + pseudo + "&" + "co=" + colorpseudo + "&" + "room=" + room;
             return false;
         });
+
+        if(roomname != ""){
+            //console.log("room indiqué")
+            console.log(roomname)
+            $('#inproompass').val(roomname);
+        }
     </script>
 </body>
 </html>
