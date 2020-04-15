@@ -29,6 +29,7 @@ chatSocket.on('message', function(data) {
     servEtatPing = 2;//valeur abstraite
 })
 
+
 // Quand un nouveau client se connecte, on affiche l'information
 chatSocket.on('nouveau_client', function(pseudo) {
     $('#zone_chat').append('<p class="chatmessNewClient messChat"><em>' + pseudo + ' a rejoint le chat !</em></p>');

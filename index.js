@@ -81,7 +81,7 @@ chat.on('connection', function (socket){
 		}
 		var i = allClients.indexOf(socket);
 		allClients.splice(i, 1);
-	 });
+	});
 
 	socket.on('nouveauPseudo', function(pseudo){ //fonction qui regarde si le pseudo de l'utilisateur est valide.
 		var validePseudo = 1;
@@ -121,33 +121,31 @@ var pr = io.of("/privateroom");
 
 pr.on('connection', function (socket){
 
-	socket.on('disconnect', function() {
+	socket.emit("message", {pseudo: "serveur", message:"you are connected to the server !", color: "black"})//pour indiquer la connection
+
+	socket.on('disconnect', function() { //pour avertire les autre client que qq est parti
 		if(socket.pseudo != null){
 			console.log("un client s'est déconnecté :" + socket.pseudo);
-			//chat.emit("client_left", socket.pseudo);
+			socket.to(socket.room).emit('client_left', socket.pseudo);
 		}
 	 });
 
-	socket.on("join_room", room => {
-		socket.join(room);
-		socket.emit("log", "tu as rejoins la room " + room)
+	socket.on("join_room", function(room, pseudo){ //pour rjoindre une room, rentrer sa room et sont pseudo et avertire les autre clients
+		socket.join(room.toString());
+		socket.pseudo = pseudo;
+		socket.room = room;
+		socket.emit("log", "tu as rejoins la room " + room);
+		socket.emit("roomjoin", room);
+		socket.to(room).emit('nouveau_client', pseudo);
 	});
 
-	socket.on("message", ({ room, message }) => {
-		socket.to(room).emit("message", {
-			message,
-			name: "Friend"
-		});
-	});
-
-	socket.on('message', function(data){
-		//console.log(socket.pseudo + " : " + data.message);
-		socket.to(room).emit("message", {pseudo: data.pseudo, message: data.message, color: data.color})
+	socket.on('message', function(data, room){
+		console.log(data.pseudo + " : " + data.message + " room code "+ room);
+		socket.to(room).broadcast.emit("message", {pseudo: data.pseudo, message: data.message, color: data.color});
 	});
 
 	socket.on("CientPing", function(){
-		socket.emit("serveurPing", /*allClients.length*/{oui: true}); //200 is ok !
-		//console.log("caca");
+		socket.emit("serveurPing", {oui: true}); //200 is ok !
 	})
 
 	socket.on('roomcodeopen', function(roomcode){
@@ -164,6 +162,7 @@ pr.on('connection', function (socket){
 	});
 
 });
+
 
 
 function NumClientsInRoom(namespace, room) {

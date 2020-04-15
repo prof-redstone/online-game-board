@@ -2,12 +2,13 @@
 var namespace = "/privateroom";
 var roomSocket = io.connect(location.protocol+"//" + url + namespace); 
 console.log("privateroom.js chargé")
+var roomjoined = false
 
 if(roomcode == "false"){
 	roomSocket.emit('roomcodeopen', randomstring(6));
 }else{
 	console.log(roomcode);
-	roomSocket.emit("join_room", roomcode);
+	roomSocket.emit("join_room", roomcode, pseudo);
 }
 
 roomSocket.on('roomcodeopen', function(data) {
@@ -16,7 +17,7 @@ roomSocket.on('roomcodeopen', function(data) {
 		console.log("code bon")
 		console.log(data.code)
 		roomcode = data.code;
-		roomSocket.emit("join_room", roomcode);
+		roomSocket.emit("join_room", roomcode, pseudo);
     }else{
 		console.log("code pas bon");
 		roomSocket.emit('roomcodeopen', randomstring(6));
@@ -25,6 +26,10 @@ roomSocket.on('roomcodeopen', function(data) {
 
 roomSocket.on('log', function(message) {
     console.log(message);
+})
+
+roomSocket.on("roomjoin", function(room){
+	roomjoined = true;
 })
 
 
