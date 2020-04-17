@@ -1,6 +1,6 @@
 {
   "name": "play-uno",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "online uno, to play play with friends",
   "main": "index.js",
   "scripts": {

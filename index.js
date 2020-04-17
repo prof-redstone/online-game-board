@@ -118,6 +118,8 @@ chat.on('connection', function (socket){
 
 
 var pr = io.of("/privateroom");
+var clientPrivateRoom = {};
+clientPrivateRoom.room = []
 
 pr.on('connection', function (socket){
 
@@ -127,13 +129,17 @@ pr.on('connection', function (socket){
 		if(socket.pseudo != null){
 			console.log("un client s'est déconnecté :" + socket.pseudo);
 			socket.to(socket.room).emit('client_left', socket.pseudo);
+			socket.to(socket.room).emit('client_leftID', socket.id);
 		}
 	 });
 
-	socket.on("join_room", function(room, pseudo){ //pour rjoindre une room, rentrer sa room et sont pseudo et avertire les autre clients
+	socket.on("join_room", function(room, pseudo, colorpseudo){ //pour rjoindre une room, rentrer sa room et sont pseudo et avertire les autre clients
 		socket.join(room.toString());
 		socket.pseudo = pseudo;
+		socket.colorpseudo = colorpseudo;
 		socket.room = room;
+		clientPrivateRoom.room[room] = 1;
+		//console.log(clientPrivateRoom);
 		socket.emit("log", "tu as rejoins la room " + room);
 		socket.emit("roomjoin", room);
 		socket.to(room).emit('nouveau_client', pseudo);
@@ -148,7 +154,7 @@ pr.on('connection', function (socket){
 		socket.emit("serveurPing", {oui: true}); //200 is ok !
 	})
 
-	socket.on('roomcodeopen', function(roomcode){
+	socket.on('roomcodeopen', function(roomcode){//pour vérifier si la room est vide et accessible
 		console.log(roomcode);
 		if(NumClientsInRoom("/privateroom", roomcode) == 0){
 			//socket.join(roomcode);
@@ -158,8 +164,22 @@ pr.on('connection', function (socket){
 		}
 		//socket.join(roomcode);
 		
-		console.log(NumClientsInRoom("/privateroom", roomcode))
+		//console.log(NumClientsInRoom("/privateroom", roomcode))
 	});
+
+	socket.on("getClientConnected1", function(room){
+		var id = socket.id;
+		console.log(id)
+		console.log(1)
+		socket.to(room).broadcast.emit("getClientConnected2", id, {pseudo: socket.pseudo, colorpseudo: socket.colorpseudo});
+	})
+
+	socket.on("getClientConnected3", function(id, data){
+		console.log(3)
+		console.log(id)
+		pr.to(id).emit("getClientConnected4", id, data);
+		io.to(socket.client.id).emit("getClientConnected4", id, data);
+	})
 
 });
 
@@ -169,10 +189,10 @@ function NumClientsInRoom(namespace, room) {
 	var clients = io.nsps[namespace].adapter.rooms[room];
 	//console.log(clients);
 	if(clients == undefined){
-		console.log(0)
+		//console.log(0)
 		return 0
 	}else{
-		console.log(clients.length)
+		//console.log(clients.length)
 		return clients.length;
 	}
 }
