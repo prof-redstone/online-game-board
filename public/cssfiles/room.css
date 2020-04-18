@@ -14,7 +14,6 @@ h4{
 }
 
 
-
 .playername.black{
     color: black;
  }
@@ -42,4 +41,19 @@ h4{
  .playername.orange{
     color: rgb(255, 136, 0);
  }
+
+ .roomID{
+    margin: 10px;
+ }
  
+ #startgamebt{
+   width: 100%;
+   color: #fff;
+   border-style: solid;
+   border-radius: 5px;
+   padding-top: 10px;
+   padding-bottom: 10px;
+   font-size: 18px;
+   background-color: #5cb85c;
+   border-color: #4cae4c;
+ }

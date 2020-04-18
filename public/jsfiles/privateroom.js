@@ -5,6 +5,8 @@ console.log("privateroom.js chargé")
 var roomjoined = false
 var playerinroom = [];
 
+PlayerInRoom();//pour afficher son pseudo
+
 if(roomcode == "false"){
 	roomSocket.emit('roomcodeopen', randomstring(6));
 }else{
@@ -31,6 +33,7 @@ roomSocket.on('log', function(message) {
 
 roomSocket.on("roomjoin", function(room){
 	roomjoined = true;
+	$(".textID").html(room)
 	roomSocket.emit("getClientConnected1", room);
 })
 
@@ -64,7 +67,8 @@ roomSocket.on("client_leftID", function(id){
 })
 
 function PlayerInRoom(){
-	$(".listplayer").html('')
+	$(".listplayer").html('');
+	$(".listplayer").append("<h4 class='playername " + colorpseudo +  "'>" + pseudo + "<h4>")
 	for(var i = 0; i < playerinroom.length; i++ ){
 		$(".listplayer").append("<h4 class='playername " + playerinroom[i][2] +  "'>" + playerinroom[i][1] + "<h4>")
 	}
