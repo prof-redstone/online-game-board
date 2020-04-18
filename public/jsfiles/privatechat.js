@@ -14,14 +14,14 @@ roomSocket.on('message', function(data) {
 
 // Quand un nouveau client se connecte, on affiche l'information
 roomSocket.on('nouveau_client', function(pseudo) {
-    $('#zone_chat').append('<p class="chatmessNewClient messChat"><em>' + pseudo + ' a rejoint le chat !</em></p>');
+    $('#zone_chat').append('<p class="chatmessNewClient messChat"><em>' + pseudo + ' join the room !</em></p>');
     element = document.getElementById('zone_chat');
     element.scrollTop = element.scrollHeight;
 })
 
 //quand un client part 
 roomSocket.on('client_left', function(pseudo) {
-    $('#zone_chat').append('<p class="chatmessNewClient messChat"><em>' + pseudo + ' a quitté le chat !</em></p>');
+    $('#zone_chat').append('<p class="chatmessNewClient messChat"><em>' + pseudo + ' left the room !</em></p>');
     element = document.getElementById('zone_chat');
     element.scrollTop = element.scrollHeight;
 })

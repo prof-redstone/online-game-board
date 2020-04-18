@@ -40,6 +40,7 @@ roomSocket.on("getClientConnected2", function(id, data){
 	playerinroom.push([id, data.pseudo, data.colorpseudo]);
 	console.log(playerinroom);
 	roomSocket.emit("getClientConnected3", id, {pseudo: pseudo, colorpseudo: colorpseudo})
+	PlayerInRoom();
 })
 
 roomSocket.on("getClientConnected4", function(id, data){
@@ -47,6 +48,7 @@ roomSocket.on("getClientConnected4", function(id, data){
 	console.log("bienreçu !2 ")
 	playerinroom.push([id, data.pseudo, data.colorpseudo]);
 	console.log(playerinroom);
+	PlayerInRoom();
 })
 
 roomSocket.on("client_leftID", function(id){
@@ -58,14 +60,15 @@ roomSocket.on("client_leftID", function(id){
 			console.log("il est bien parti c'est bon")
 		}
 	}
+	PlayerInRoom(); //pour mettre à jour la liste des joueur dans le DOM
 })
 
-
-
-
-
-
-
+function PlayerInRoom(){
+	$(".listplayer").html('')
+	for(var i = 0; i < playerinroom.length; i++ ){
+		$(".listplayer").append("<h4 class='playername " + playerinroom[i][2] +  "'>" + playerinroom[i][1] + "<h4>")
+	}
+}
 
 
 

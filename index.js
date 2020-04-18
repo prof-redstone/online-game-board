@@ -177,8 +177,8 @@ pr.on('connection', function (socket){
 	socket.on("getClientConnected3", function(id, data){
 		console.log(3)
 		console.log(id)
-		pr.to(id).emit("getClientConnected4", id, data);
-		io.to(socket.client.id).emit("getClientConnected4", id, data);
+		pr.to(id).emit("getClientConnected4", socket.id, data);
+		io.to(id).emit("getClientConnected4", socket.id, data);
 	})
 
 });

@@ -12,3 +12,34 @@ h4{
     margin-top: 10px;
     font-family: 'Roboto', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+
+
+
+.playername.black{
+    color: black;
+ }
+ .playername.pink{
+    color: rgb(255, 98, 195);
+ }
+ .playername.brown{
+    color: brown;
+ }
+ .playername.red{
+    color: red;
+ }
+ .playername.green{
+    color: green;
+ }
+ .playername.blue{
+    color: blue;
+ }
+ .playername.purple{
+    color: purple;
+ }
+ .playername.cyan{
+    color: cyan;
+ }
+ .playername.orange{
+    color: rgb(255, 136, 0);
+ }
+ 
