@@ -65,13 +65,18 @@ function insereMessage(pseudo, message, color) {
     $('#zone_chat').append('<p class="messChat fontMessage">'+ date.getHours() + ":"+ date.getMinutes()+ " " +'<strong class="' + color + '" >' + pseudo + " :" + '</strong> ' + message + '</p>');
     element = document.getElementById('zone_chat');
     element.scrollTop = element.scrollHeight;
+    PositionChat();//pour mettre à jour la taille de la div
 }
 
-if($("#zone_chat").css("position") == "absolute"){//si la fennettre est en format mobile on chage la taille
-    console.log($("#parentzonechat").css("width").replace(/[^-\d\.]/g, '')); //200px → 200
-    var temp = $("#parentzonechat").css("width").replace(/[^-\d\.]/g, '') - 18;
-    $("#zone_chat").css("width", temp + "px");
+function PositionChat(){
+    if($("#zone_chat").css("position") == "absolute"){//si la fennettre est en format mobile on chage la taille
+        console.log($("#parentzonechat").css("width").replace(/[^-\d\.]/g, '')); //replace 200px → 200
+        var temp = $("#parentzonechat").css("width").replace(/[^-\d\.]/g, '') - 18;
+        $("#zone_chat").css("width", temp + "px");
+    }
 }
+
+PositionChat();
 
 setInterval(() => { //function qui détecte la perte de connection et averti l'utilisateur.
     servEtatPing --

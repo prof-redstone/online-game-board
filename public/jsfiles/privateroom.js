@@ -21,6 +21,7 @@ roomSocket.on('roomcodeopen', function(data) {
 		console.log(data.code)
 		roomcode = data.code;
 		roomSocket.emit("join_room", roomcode, pseudo, colorpseudo);
+		history.pushState(null, "play-uno", window.location + "&room=" + data.code);
     }else{
 		console.log("code pas bon");
 		roomSocket.emit('roomcodeopen', randomstring(6));
