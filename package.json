@@ -1,13 +1,13 @@
 {
-  "name": "play-uno",
+  "name": "board-game-online",
   "version": "0.1.2",
-  "description": "online uno, to play play with friends",
+  "description": "board game online, to play play with friends",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "uno"
+    "board game"
   ],
   "author": "tom Demagny",
   "dependencies": {
