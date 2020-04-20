@@ -23,7 +23,6 @@ app.get('/pr', function(req, res){
 	var pseudo;
 	var colorpseudo;
 	var room = false;
-	//var roomname;
 	if("ps" in param){ //pseudo
 		pseudo = param["ps"]
 	}else{
@@ -42,13 +41,20 @@ app.get('/pr', function(req, res){
 		room = false
 	}
 
-	/*if("room" in param){
-		roomname = param["room"];
-	}else{
-		roomname = "undefined";
-	}*/
-	//console.log("room "+roomname+" are created");
 	res.render('pages/privateroom.ejs', {url: req.headers.host, pseudo: pseudo, colorpseudo: colorpseudo, roomcode: room});
+});
+
+app.get('/join', function(req, res){
+	var param = querystring.parse(url.parse(req.url).query);
+	var room = false;
+
+	if("room" in param){
+		room = param["room"];
+	}else{
+		room = false;
+	}
+
+	res.render('pages/joinroom.ejs', {url: req.headers.host, roomcode: room, pseudo: "anonymous"+Math.floor(Math.random() * Math.floor(1000)) });
 });
 
 app.use(express.static('public'));//pour tout les fichiers publics

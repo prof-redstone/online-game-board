@@ -1,6 +1,7 @@
 body{
     background-color: rgb(39, 95, 141);
-     background-image: url("/imgfiles/background.png");
+    background: radial-gradient(rgb(19, 104, 165),80%, rgb(17, 43, 93));
+     /*background-image: url("/imgfiles/background.png");*/
      /* Background image is centered vertically and horizontally at all times */
      background-position: center center;
      
@@ -182,4 +183,8 @@ strong.black{
  strong.orange{
     color: rgb(255, 136, 0);
  }
+
+.notallowed:hover{
+   cursor: not-allowed;
+}
  
