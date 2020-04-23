@@ -36,9 +36,14 @@ body{
     max-width: 900px;
 }
 
+.conteurlogonametitle{
+   display: flex;
+   justify-content: center;
+   width: 100%;
+}
+
  .logo-name{
     display: flex; 
-    justify-content: center; 
     align-items: center; 
 }
  

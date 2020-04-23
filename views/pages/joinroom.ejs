@@ -154,6 +154,12 @@
                 document.location.href = "/pr" + "?" + "room=" + room + "&" + "ps=" + pseudo + "&" + "co=" + colorpseudo;
             }
         });
+
+        $("#inputpseudo").focus(
+            function(){
+                $("#inputpseudo").select();
+            }
+        )
     </script>
 </body>
 </html>
