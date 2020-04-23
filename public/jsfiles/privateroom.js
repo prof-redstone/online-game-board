@@ -75,6 +75,26 @@ function PlayerInRoom(){
 	}
 }
 
+$("#invite-link").hover(
+	function(){
+		$("#invite-link").val(location.protocol+"//" + url + "/join" + "?room=" + roomcode)
+	}
+)
+
+$("#invite-link").mouseleave(
+	function(){
+		$("#invite-link").val("Hover to reveal")
+	}
+)
+
+function copyToClipboard(id){
+	var element = document.getElementById(id)
+	element.value = location.protocol+"//" + url + "/join" + "?room=" + roomcode;
+	element.select();
+	element.setSelectionRange(0, 99999);
+	document.execCommand("copy");
+	element.value = "Hover to reveal"
+}
 
 
 
