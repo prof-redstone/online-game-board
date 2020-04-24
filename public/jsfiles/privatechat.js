@@ -7,7 +7,6 @@ var date = new Date(); //pour l'heure sur les messages
 
 // Quand on reçoit un message, on l'insère dans la page
 roomSocket.on('message', function(data) {
-    console.log("oiu")
     insereMessage(data.pseudo, data.message, data.color);
     servEtatPing = 2;//valeur abstraite
 })
@@ -73,7 +72,7 @@ function insereMessage(pseudo, message, color) { //insert le message dans le DOM
     PositionChat();//pour mettre à jour la taille de la div
 }
 
-function PositionChat(){
+function PositionChat(){ //pour mettre à jour la taille du chat
     if($("#zone_chat").css("position") == "absolute"){//si la fennettre est en format mobile on chage la taille
         console.log($("#parentzonechat").css("width").replace(/[^-\d\.]/g, '')); //replace 200px → 200
         var temp = $("#parentzonechat").css("width").replace(/[^-\d\.]/g, '') - 18;
@@ -81,6 +80,6 @@ function PositionChat(){
     }
 }
 
-PositionChat();
+PositionChat();//pour mettre à jour la taille de la div
 
 

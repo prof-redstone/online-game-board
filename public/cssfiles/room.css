@@ -100,4 +100,5 @@ h4{
    border-style: solid;
    border-top-right-radius: 5px;
    border-bottom-right-radius: 5px;
+   cursor: pointer;
  }
