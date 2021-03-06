@@ -182,7 +182,9 @@ function Draw(){
 }
 
 function click(e) {
-    Case(Math.floor(e.layerX/133),Math.floor(e.layerY/133))
+    let offset = getPosition(canvas)
+    Case(Math.floor((e.clientX - offset[0])/133),Math.floor((e.clientY- offset[1])/133))
+    console.log(Math.floor((e.clientX - offset[0])/133),Math.floor((e.clientY- offset[1])/133))
 }
 canvas.addEventListener('click', click)
 
@@ -273,6 +275,23 @@ function GetData(data){
 
 function nb_random(min, max){ //fonction générant un nombre aléatoire entier min et max inclue [min;max]
     return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
+
+function getPosition(element) //fonction pour avoir les coordonné x y d'un element dans la page
+{
+    var left = 0;
+    var top = 0;
+    var e = element;
+    /*Tant que l'on a un élément parent*/
+    while (e.offsetParent != undefined && e.offsetParent != null)
+    {
+        /*On ajoute la position de l'élément parent*/
+        left += e.offsetLeft + (e.clientLeft != null ? e.clientLeft : 0);
+        top += e.offsetTop + (e.clientTop != null ? e.clientTop : 0);
+        
+        e = e.offsetParent;
+    }
+    return new Array(left,top);
 }
 
 
