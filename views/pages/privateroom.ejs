@@ -69,7 +69,7 @@
 
                 <div class="playerinroom">
                     <div style="display: flex; justify-content: center;">
-                        <h2>PLAYER :</h2>
+                        <h2>PLAYER&nbsp;:</h2>
                     </div>
                     <div class="separationbarreO" style="margin-left: 0px; margin-right: 0px; margin-top: 3px;"></div>
                     <div class="listplayer">
@@ -81,7 +81,7 @@
 
                 <div class="settingsTools" style="margin-right: 10px;">
                     <div class="roomID">
-                        <h2 style="display: inline;">ROOM ID : </h2>
+                        <h2 style="display: inline;">ROOM&nbsp;ID&nbsp;: </h2>
                         <h2 style="display: inline;" class="textID"></h2>
                     </div>
                     <div class="startgame">
@@ -90,6 +90,13 @@
                         </button>
                     </div>
                     <div class="separationbarreO" style="margin-left: 0px; margin-right: 0px; margin-top: 10px;"></div>
+                    <div class="selecteGame">
+                        <div class="selector">
+                            <select name="game" id="gameSelection">
+                                <option value="morpion">morpion</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
             
@@ -114,11 +121,10 @@
         var pseudo = "<%= pseudo %>";
         var colorpseudo = "<%= colorpseudo %>";
         var roomcode = "<%= roomcode %>";
-        console.log(pseudo + " " + colorpseudo);
+        var namespace = "<%= namespace %>";
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="jsfiles/privateroom.js"></script>
-    <script src="jsfiles/privatechat.js"></script>
 </body>
 </html>

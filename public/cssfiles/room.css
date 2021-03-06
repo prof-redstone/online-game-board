@@ -1,4 +1,4 @@
-h2{
+h2 {
     margin: 0px;
     padding: 0px;
     margin-top: 10px;
@@ -7,98 +7,115 @@ h2{
     font-family: 'Baloo Bhaina 2', cursive;
 }
 
-h4{
+h4 {
     margin: 0px;
     margin-top: 10px;
     font-family: 'Roboto', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 
-.playername.black{
+.playername.black {
     color: black;
- }
- .playername.pink{
+}
+
+.playername.pink {
     color: rgb(255, 98, 195);
- }
- .playername.brown{
+}
+
+.playername.brown {
     color: brown;
- }
- .playername.red{
+}
+
+.playername.red {
     color: red;
- }
- .playername.green{
+}
+
+.playername.green {
     color: green;
- }
- .playername.blue{
+}
+
+.playername.blue {
     color: blue;
- }
- .playername.purple{
+}
+
+.playername.purple {
     color: purple;
- }
- .playername.cyan{
+}
+
+.playername.cyan {
     color: cyan;
- }
- .playername.orange{
+}
+
+.playername.orange {
     color: rgb(255, 136, 0);
- }
+}
 
- .roomID{
+.roomID {
     margin: 10px;
- }
- 
- #startgamebt{
-   width: 100%;
-   color: #fff;
-   border-style: solid;
-   border-radius: 5px;
-   padding-top: 10px;
-   padding-bottom: 10px;
-   font-size: 18px;
-   background-color: #5cb85c;
-   border-color: #4cae4c;
- }
+}
 
- .title{
-    text-align: center ;
+#startgamebt {
+    width: 100%;
+    color: #fff;
+    border-style: solid;
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 18px;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+}
+
+.title {
+    text-align: center;
     color: white;
     font-size: 30;
     font-family: 'Baloo Bhaina 2', cursive;
     height: 45px;
- }
+}
 
- .invite-container{
+.invite-container {
     display: flex;
     justify-content: center;
-    align-items: center ;
+    align-items: center;
     flex-direction: column;
-    
- }
 
- .invite-bar{
-   display: flex;
+}
+
+.invite-bar {
+    display: flex;
     width: 100%;
     display: flex;
     justify-content: center;
- }
+}
 
- .invite-input{
-   display: flex;
-   width: 100%;
- }
+.invite-input {
+    display: flex;
+    width: 100%;
+}
 
- #invite-link{
-   display: flex;
-   width: 100%;
-   text-align: center;
-   font-size: 20px;
- }
+#invite-link {
+    display: flex;
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+}
 
- #inviteCopyButton{
-   background-color: #5cb85c;
-   border-color: #4cae4c;
-   color: #fff;
-   border-style: solid;
-   border-top-right-radius: 5px;
-   border-bottom-right-radius: 5px;
-   cursor: pointer;
- }
+#inviteCopyButton {
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+    color: #fff;
+    border-style: solid;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    cursor: pointer;
+}
+
+.selector{
+   margin-top: 10px;
+}
+
+#gameSelection{
+   max-width: 200px;
+   min-width: 140px;
+}

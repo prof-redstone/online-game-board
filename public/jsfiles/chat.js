@@ -80,7 +80,7 @@ PositionChat();
 
 setInterval(() => { //function qui détecte la perte de connection et averti l'utilisateur.
     servEtatPing --
-    chatSocket.emit("CientPing");
+    chatSocket.emit("ClientPing");
     if(servEtatPing < 0){
         console.log("problème de connection au serveur, vérifier votre connection a internet.")
         $("#message").css("background-color", "#FCC")

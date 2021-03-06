@@ -1,12 +1,14 @@
-console.log(location.protocol+"//" + url);
-var namespace = "/privateroom";
+//console.log(location.protocol+"//" + url);
+//var namespace = "/privateroom";  //in ejs file
 //var roomSocket = io.connect(location.protocol+"//" + url + namespace); 
-var servEtatPing = 1;
-var date = new Date(); //pour l'heure sur les messages
+console.log("privatechat.js chargé")
+
+
 
 
 // Quand on reçoit un message, on l'insère dans la page
 roomSocket.on('message', function(data) {
+    console.log("nouveau mesage")
     insereMessage(data.pseudo, data.message, data.color);
     servEtatPing = 2;//valeur abstraite
 })
@@ -27,7 +29,7 @@ roomSocket.on('client_left', function(pseudo) {
 
 setInterval(() => { //function qui détecte la perte de connection internet et averti l'utilisateur.
     servEtatPing --
-    roomSocket.emit("CientPing");
+    roomSocket.emit("ClientPing");
     if(servEtatPing < 0){
         console.log("problème de connection au serveur, vérifier votre connection a internet.")
         $("#message").css("background-color", "#FCC")
@@ -43,9 +45,6 @@ setInterval(() => { //function qui met a jours l'heure
 roomSocket.on("serveurPing", function(/*NBusers*/){ //fonction qui permet de vérifier que le client est toujours connecté au server
     servEtatPing = 2;
 });
-
-
-
 
 // Lorsqu'on envoie un message, on transmet le message et on l'affiche sur la page
 $('#formulaire_chat').submit(function () {
@@ -74,7 +73,7 @@ function insereMessage(pseudo, message, color) { //insert le message dans le DOM
 
 function PositionChat(){ //pour mettre à jour la taille du chat
     if($("#zone_chat").css("position") == "absolute"){//si la fennettre est en format mobile on chage la taille
-        console.log($("#parentzonechat").css("width").replace(/[^-\d\.]/g, '')); //replace 200px → 200
+        //console.log($("#parentzonechat").css("width").replace(/[^-\d\.]/g, '')); //replace 200px → 200
         var temp = $("#parentzonechat").css("width").replace(/[^-\d\.]/g, '') - 18;
         $("#zone_chat").css("width", temp + "px");
     }
@@ -82,4 +81,7 @@ function PositionChat(){ //pour mettre à jour la taille du chat
 
 PositionChat();//pour mettre à jour la taille de la div
 
+roomSocket.on('log', function(message) { //fonction qui affiche un message du server
+    console.log(message);
+})
 
