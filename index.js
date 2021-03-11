@@ -125,8 +125,11 @@ app.use(express.static('public')); //pour tout les fichiers publics
 app.use(favicon(path.join(__dirname, 'public/imgfiles', 'favicon.ico'))) //pour la requete de la favicon
 
 app.use(function(req, res, next) { //a mettre juste avant app.listen
-    res.setHeader("Content-Type", 'text/plain');
-    res.status(404).send('Page introuvable ! Votre clavier a fourché. ');
+    var param = querystring.parse(url.parse(req.url).query);
+    res.render('pages/accueil.ejs', {
+        url: req.headers.host,
+        name: "anonymous" + Math.floor(Math.random() * Math.floor(1000))
+    });
 })
 
 server.listen(PORT);

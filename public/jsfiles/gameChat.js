@@ -186,8 +186,15 @@ function messvalide(message) { //a compléter plus tard pour éviter les message
     return true
 }
 
+//to write correctly hours
+function addZero(i) {
+    if (i < 10) {
+        i = "0" + i;
+    };
+    return i;
+};
 function insereMessage(pseudo, message, color) { //insert le message dans le DOM
-    $('#zone_chat').append('<p class="messChat fontMessage">' + date.getHours() + ":" + date.getMinutes() + " " + '<strong class="' + color + '" >' + pseudo + " :" + '</strong> ' + message + '</p>');
+    $('#zone_chat').append('<p class="messChat fontMessage">' + addZero(date.getHours()) + ":"+ addZero(date.getMinutes()) + " " + '<strong class="' + color + '" >' + pseudo + " :" + '</strong> ' + message + '</p>');
     element = document.getElementById('zone_chat');
     element.scrollTop = element.scrollHeight;
     PositionChat(); //pour mettre à jour la taille de la div
