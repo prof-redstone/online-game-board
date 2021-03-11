@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes"> <!-- to suport properly all mobil-->
     <title>Board Game Online</title>
     <link rel="stylesheet" href="cssfiles/index.css">
-    <link rel="stylesheet" href="cssfiles/room.css">
     <link rel="stylesheet" href="cssfiles/morpion.css">
     <link href="http://fonts.googleapis.com/css?family=Roboto:100,400,300,500,700,900" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -27,9 +26,14 @@
                         Board Game online
                     </h1>
                 </div>
+                <div>
+                    <button id="BTNreturnToRoomLobby">
+                        <img src="imgfiles/goBack.png" style="width: 40px;">
+                    </button>
+                </div>
             </div>
             <div class="centercontainer">
-                <div class="chatpart" style="height: 465;">
+                <div class="chatpart">
                     <div class="chat">
                         <div class="classContener">
                             <p style="margin: 0px; padding-top: 5px; display: flex; justify-content: center; font-family: Arial, Helvetica, sans-serif; font-weight: bold;">ROOM CHAT !</p>
@@ -65,11 +69,18 @@
         roomcode = "<%= roomcode %>";
         LB = "<%= LB %>"
         namespace = "<%= namespace %>";
-        console.log(pseudo + " " + colorpseudo);
+
+        
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="jsfiles/gameChat.js"></script>
     <script src="jsfiles/morpion.js"></script>
+    <script>
+        //btn Uturn to go back at room lobby
+        $('#BTNreturnToRoomLobby').click(function() {
+            document.location.href = "/pr" + "?" + "room=" + roomcode + "&" + "ps=" + pseudo + "&" + "co=" + colorpseudo;
+        });
+    </script>
 </body>
 </html>

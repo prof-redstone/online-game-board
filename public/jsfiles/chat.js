@@ -76,6 +76,9 @@ function PositionChat(){
     }
 }
 
+window.onresize = function(){ 
+    PositionChat();
+}
 PositionChat();
 
 setInterval(() => { //function qui détecte la perte de connection et averti l'utilisateur.

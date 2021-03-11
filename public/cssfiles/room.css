@@ -1,3 +1,7 @@
+body{
+    min-width: 300px;
+}
+
 h2 {
     margin: 0px;
     padding: 0px;
@@ -9,7 +13,7 @@ h2 {
 
 h4 {
     margin: 0px;
-    margin-top: 10px;
+    margin-top: 0px;
     font-family: 'Roboto', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -50,8 +54,46 @@ h4 {
     color: rgb(255, 136, 0);
 }
 
+.playerinroom{
+    margin: 0 10px;
+}
+
+.playername{
+    margin-top: 7px;
+}
+
+.listplayer{
+    display: flex;
+    flex-direction: column;
+}
+
 .roomID {
-    margin: 10px;
+    min-width: 195px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.textID{
+    margin-left: 5px;
+}
+
+.selector{
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+ }
+ 
+ #gameSelection{
+    max-width: 200px;
+ }
+
+.startgame{
+    display: flex;
+    justify-content: center;
+    margin-left: 10px;
+    margin-top: 10px;
 }
 
 #startgamebt {
@@ -62,8 +104,16 @@ h4 {
     padding-top: 10px;
     padding-bottom: 10px;
     font-size: 18px;
-    background-color: #5cb85c;
+    background-color: #60d160;
     border-color: #4cae4c;
+}
+
+#startgamebt:hover{
+    background-color: #4cae4c;
+}
+
+.selecteGame{
+    margin-left: 10px;
 }
 
 .title {
@@ -84,7 +134,7 @@ h4 {
 
 .invite-bar {
     display: flex;
-    width: 100%;
+    width: 95%;
     display: flex;
     justify-content: center;
 }
@@ -102,7 +152,7 @@ h4 {
 }
 
 #inviteCopyButton {
-    background-color: #5cb85c;
+    background-color: #60d160;
     border-color: #4cae4c;
     color: #fff;
     border-style: solid;
@@ -110,12 +160,58 @@ h4 {
     border-bottom-right-radius: 5px;
     cursor: pointer;
 }
-
-.selector{
-   margin-top: 10px;
+#inviteCopyButton:hover{
+    background-color: #4cae4c;
 }
 
-#gameSelection{
-   max-width: 200px;
-   min-width: 140px;
+
+@media only screen and (max-width: 550px) { /*the same as index.css but the limit size is different*/
+    .centercontainer {
+        flex-direction: column-reverse;
+        margin: 0 10px;
+    }
+    .separationbarreV {
+        /*height: 2px;
+        width: auto !important;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 5px;
+        margin-bottom: 5px;*/
+        margin: 5px;
+    }
+
+    #parentzonechat {
+        height: 300px !important;
+    }
+    #zone_chat{
+       height: 300px;
+    }
+
+    #logonametitle{
+       margin: 0 !important;
+    }
+    #logonametitle{
+        font-size: 1.5em;
+    }
+    .conteurlogonametitle{
+        margin: 5px 0;
+    }
+}
+
+
+@media only screen and (max-width: 550px) {
+    .listplayer{
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: 0 10px;
+    }
+    .playername{
+        margin: 0 4px;
+    }
+    .playerinroom{
+        display: flex;
+    }
+    #startgamebt{
+        margin-bottom: 10px;
+    }
 }

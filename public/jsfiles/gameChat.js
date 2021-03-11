@@ -201,6 +201,10 @@ function PositionChat() { //pour mettre à jour la taille du chat
     }
 }
 
+window.onresize = function(){ 
+    PositionChat();
+}
+
 PositionChat(); //pour mettre à jour la taille de la div
 
 roomSocket.on('log', function(message) { //fonction qui affiche un message du server

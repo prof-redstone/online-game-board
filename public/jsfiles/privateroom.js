@@ -5,6 +5,9 @@ var playerinroom = [];
 var gameMode = document.getElementById("gameSelection").value
 var servEtatPing = 1;
 var date = new Date(); //pour l'heure sur les messages
+//sound
+const joinAudio = new Audio("audio/join.ogg");
+const leaveAudio = new Audio("audio/leave.ogg");
 
 PlayerInRoom();//pour afficher son pseudo
 
@@ -74,9 +77,9 @@ roomSocket.on("client_leftID", function(id){
 
 function PlayerInRoom(){ //met à jour la list avec tous les joueurs
 	$(".listplayer").html('');
-	$(".listplayer").append("<h4 class='playername " + colorpseudo +  "'>" + pseudo + "<h4>")
+	$(".listplayer").append("<h4 class='playername " + colorpseudo +  "'>" + pseudo + "</h4>") //nous meme
 	for(var i = 0; i < playerinroom.length; i++ ){
-		$(".listplayer").append("<h4 class='playername " + playerinroom[i][2] +  "'>" + playerinroom[i][1] + "<h4>")
+		$(".listplayer").append("<h4 class='playername " + playerinroom[i][2] +  "'>" + playerinroom[i][1] + "</h4>")
 	}
 	PositionChat();//function déclaré dans un autre fichier plus tard.
 }
@@ -93,6 +96,7 @@ roomSocket.on('nouveau_client', function(pseudo) {
     $('#zone_chat').append('<p class="chatmessNewClient messChat"><em>' + pseudo + ' join the room !</em></p>');
     element = document.getElementById('zone_chat');
     element.scrollTop = element.scrollHeight;
+	joinAudio.play()
 })
 
 //quand un client part 
@@ -100,6 +104,7 @@ roomSocket.on('client_left', function(pseudo) {
     $('#zone_chat').append('<p class="chatmessNewClient messChat"><em>' + pseudo + ' left the room !</em></p>');
     element = document.getElementById('zone_chat');
     element.scrollTop = element.scrollHeight;
+	leaveAudio.play()
 })
 
 setInterval(() => { //function qui détecte la perte de connection internet et averti l'utilisateur.
@@ -211,6 +216,5 @@ startgamebt.onclick = ()=>{
 
 //start Morpion game
 roomSocket.on("startMorpion", function(NewroomCode){
-	console.log("la on va changer de page + " + NewroomCode + roomcode)
 	document.location.href = "/morpion" + "?"+ "room=" + NewroomCode + "&" + "LB=" + roomcode + "&" + "ps=" + pseudo + "&" + "co=" + colorpseudo;
 })

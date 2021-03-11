@@ -1,82 +1,76 @@
-body{
-    background-color: rgb(39, 95, 141);
-    background: radial-gradient(rgb(19, 104, 165),80%, rgb(17, 43, 93));
-     /*background-image: url("/imgfiles/background.png");*/
-     /* Background image is centered vertically and horizontally at all times */
-     background-position: center center;
-     
-     /* Background image doesn't tile */
-     background-repeat: no-repeat;
-     
-     /* Background image is fixed in the viewport so that it doesn't move when 
-        the content's height is greater than the image's height */
-     background-attachment: fixed;
-     
-     /* This is what makes the background image rescale based
-        on the container's size */
-     background-size: cover;
-     display: flex;
-     justify-content: center;
- }
- 
- @media only screen and (max-width: 755px) {
-    body {
-      justify-content: normal;
-    }
-    #zone_chat{
-       position: absolute;
-    }
+body {
+   background: rgb(31,137,213);
+   background: radial-gradient(circle, rgba(31,137,213,1) 0%, rgba(14,78,139,1) 87%);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
 }
- 
 
-.main-center{
+button{
+    background-color: transparent;
+    border: none;
+}
+
+button:focus{
+    outline: none;
+}
+
+
+.main-center {
     display: flex;
     justify-content: center;
     justify-self: center;
     max-width: 900px;
 }
 
-.conteurlogonametitle{
-   display: flex;
-   justify-content: center;
-   width: 100%;
+.conteurlogonametitle {
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
- .logo-name{
-    display: flex; 
-    align-items: center; 
+.logo-name {
+    display: flex;
+    align-items: center;
 }
- 
- #logonametitle{
+
+#logonametitle {
     font-family: Helvetica;
     font-family: 'Baloo Bhaina 2';
 }
 
- 
-.centercontainer{
-    display: flex; 
+#parentzonechat {
+    height: 400px;
+}
+
+.centercontainer {
+    display: flex;
     padding: 5px;
     background-color: #EEE;
     border-radius: 5px;
 }
 
 
-.chatpart{
+.chatpart {
     margin-left: 10px;
+    margin-right: 10px;
     margin-top: 10px;
     display: flex;
- }
+}
 
-.chat{
+.chat {
     /*max-width: 350px;*/
     flex: 1 1 auto;
     width: 100%;
     background-color: #EEE;
     min-width: 170px;
 }
- 
-#zone_chat{
-    scrollbar-color:#AAA #BBB;
+
+#zone_chat {
+    scrollbar-color: #AAA #BBB;
     scrollbar-width: thin;
 }
 
@@ -92,40 +86,39 @@ body{
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #AAA; 
+    background: #AAA;
 }
 
 
-.classContener{
+.classContener {
     background-color: #CCC;
     border-radius: 3px;
- }
- 
- .separationbarreV{
-    margin-left: 15px;
-    margin-right: 15px;
+}
+
+.separationbarreV {
+    margin-left: 5px;
+    margin-right: 5px;
     margin-top: 10px;
     margin-bottom: 10px;
-    border-left: solid;
-    border-width: 2px;
-    border-color: #888;
- }
- 
- .separationbarreO{
+    width: 2px;
+    background-color: #888;
+}
+
+.separationbarreO {
     margin-left: 15px;
     margin-right: 15px;
     background-color: #888;
     height: 2px;
- }
- 
- .fontMessage{
+}
+
+.fontMessage {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font: 16px 'Roboto', Arial;
     font-size: 14px;
- }
- 
- 
- .senderMess{
+}
+
+
+.senderMess {
     margin-left: 8px;
     margin-top: 5px;
     margin-bottom: 2px;
@@ -137,58 +130,96 @@ body{
     border-color: #CCC;
     padding-left: 2px;
     background-color: #EEE;
-    outline:none;
+    outline: none;
     flex: 1 1 auto;
     width: 100%;
- }
- .senderMess:focus{
+}
+
+.senderMess:focus {
     border-color: #59E;
     outline: 0;
- }
- 
- #zone_chat{
+}
+
+#zone_chat {
     overflow-y: auto;
     overflow-x: hidden;
     height: 400px;
     max-width: 400px;
     margin-left: 10px;
     margin-left: 10px;
- }
- .messChat{
+}
+
+.messChat {
     margin-top: 5px;
     margin-bottom: 5px;
- }
-
- 
-strong.black{
-    color: black;
- }
- strong.pink{
-    color: rgb(255, 98, 195);
- }
- strong.brown{
-    color: brown;
- }
- strong.red{
-    color: red;
- }
- strong.green{
-    color: green;
- }
- strong.blue{
-    color: blue;
- }
- strong.purple{
-    color: purple;
- }
- strong.cyan{
-    color: cyan;
- }
- strong.orange{
-    color: rgb(255, 136, 0);
- }
-
-.notallowed:hover{
-   cursor: not-allowed;
 }
- 
+
+
+strong.black {
+    color: black;
+}
+
+strong.pink {
+    color: rgb(255, 98, 195);
+}
+
+strong.brown {
+    color: brown;
+}
+
+strong.red {
+    color: red;
+}
+
+strong.green {
+    color: green;
+}
+
+strong.blue {
+    color: blue;
+}
+
+strong.purple {
+    color: purple;
+}
+
+strong.cyan {
+    color: cyan;
+}
+
+strong.orange {
+    color: rgb(255, 136, 0);
+}
+
+
+@media only screen and (max-width: 500px) {
+    .centercontainer {
+        flex-direction: column-reverse;
+        margin: 0 10px;
+    }
+    /*.separationbarreV {
+        height: 2px;
+        width: auto !important;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }*/
+
+    #parentzonechat {
+        height: 300px !important;
+    }
+    #zone_chat{
+       height: 300px;
+    }
+
+    #logonametitle{
+       margin: 0 !important;
+    }
+    #logonametitle{
+        font-size: 1.5em;
+    }
+    .conteurlogonametitle{
+        margin: 5px 0;
+    }
+}
