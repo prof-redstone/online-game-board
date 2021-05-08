@@ -98,18 +98,25 @@
     <script src="jsfiles/chat.js"></script>
     <script>
         $('#formulaire_name').submit(function () { //valide l'entrer du nom
-            //pseudo = $('#inputpseudo').val();
-            //$('#inputpseudo').attr('placeholder', pseudo);
             $('#inputpseudo').blur();
             return false;
         });
         $('#formulaire_name').focusout(function () { //valide l'entrer du nom quand on perd le focus
             if($('#inputpseudo').val().replace(/\s/g, '') == ''){//chek if inpute contain nothing or juste space
             }else{
-                pseudo = $('#inputpseudo').val();
+                pseudo = ""
+                for (let i = 0; i < $('#inputpseudo').val().length; i++) {
+                    let a = $('#inputpseudo').val()[i]
+                    let invalideChar = ["<",">","&","=","!","/","\\","\"","\'"]
+                    if(a=="<"||a==">"||a=="&"||a=="="||a=="!"||a=="/"||a=="\\"||a=="\""||a=="\'"||a==":"||a ==";"||a=="$"){
+                        pseudo +=""
+                    }else{
+                        pseudo += $('#inputpseudo').val()[i]
+                    }
+                }
+                $('#inputpseudo').val(pseudo)
                 $('#inputpseudo').attr('placeholder', pseudo);
-                //$('#inputpseudo').val('');
-                //$('#inputpseudo').blur();
+                console.log(pseudo)
                 return false;
             }
         });

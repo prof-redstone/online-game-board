@@ -133,14 +133,14 @@ roomSocket.on('message', function(data) {
 
 // Quand un nouveau client se connecte, on affiche l'information
 roomSocket.on('nouveau_client', function(pseudo) {
-    $('#zone_chat').append('<p class="chatmessNewClient messChat"><em>' + pseudo + ' join the room !</em></p>');
+    $('#zone_chat').append('<p class="chatmessNewClient messChat"><em>' + TextToHtml(pseudo) + ' join the room !</em></p>');
     element = document.getElementById('zone_chat');
     element.scrollTop = element.scrollHeight;
 })
 
 //quand un client part 
 roomSocket.on('client_left', function(pseudo) {
-    $('#zone_chat').append('<p class="chatmessNewClient messChat"><em>' + pseudo + ' left the room !</em></p>');
+    $('#zone_chat').append('<p class="chatmessNewClient messChat"><em>' + TextToHtml(pseudo) + ' left the room !</em></p>');
     element = document.getElementById('zone_chat');
     element.scrollTop = element.scrollHeight;
 })
@@ -193,8 +193,31 @@ function addZero(i) {
     };
     return i;
 };
+
+function TextToHtml(t) { //pour eviter les failles de type xss
+    let c = ""
+    for (let i = 0; i < t.length; i++) {
+        switch (t[i]) {
+            case "<":
+                c += "&lt;"
+                break;
+            case ">":
+                c += "&gt;"
+                break;
+            case "\"":
+                c += "&quot;"
+                break;
+
+            default:
+                c += t[i]
+        }
+    }
+    return c
+}
+
+
 function insereMessage(pseudo, message, color) { //insert le message dans le DOM
-    $('#zone_chat').append('<p class="messChat fontMessage">' + addZero(date.getHours()) + ":"+ addZero(date.getMinutes()) + " " + '<strong class="' + color + '" >' + pseudo + " :" + '</strong> ' + message + '</p>');
+    $('#zone_chat').append('<p class="messChat fontMessage">' + addZero(date.getHours()) + ":"+ addZero(date.getMinutes()) + " " + '<strong class="' + color + '" >' + TextToHtml(pseudo) + " :" + '</strong> ' + TextToHtml(message) + '</p>');
     element = document.getElementById('zone_chat');
     element.scrollTop = element.scrollHeight;
     PositionChat(); //pour mettre à jour la taille de la div

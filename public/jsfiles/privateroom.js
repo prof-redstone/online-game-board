@@ -1,5 +1,4 @@
 var roomSocket = io.connect(location.protocol+"//" + url + namespace); 
-console.log("privateroom.js chargé")
 var roomjoined = false
 var playerinroom = [];
 var gameMode = document.getElementById("gameSelection").value
@@ -19,7 +18,6 @@ if(roomcode == "false"){ //si le coderoom n'est pas dans l'url on le créé
 
 roomSocket.on('roomcodeopen', function(data) {
     if(data.etat == true){//connection a la room
-		console.log("code bon")
 		roomcode = data.code;
 		roomSocket.emit("join_room", roomcode, pseudo, colorpseudo);
 		history.pushState(null, "board-game-online", window.location + "&room=" + data.code);//change url to save at reload
@@ -54,14 +52,12 @@ $(".textID").mouseleave(//pour chacher le code
 
 roomSocket.on("getClientConnected2", function(id, data){  //tout le monde recois les coordonné du nouveau client
 	playerinroom.push([id, data.pseudo, data.colorpseudo]);
-	console.log(playerinroom);
 	roomSocket.emit("getClientConnected3", id, {pseudo: pseudo, colorpseudo: colorpseudo}) //on renvoie les coordonées au nouveau client
 	PlayerInRoom();
 })
 
 roomSocket.on("getClientConnected4", function(id, data){
 	playerinroom.push([id, data.pseudo, data.colorpseudo]);
-	console.log(playerinroom);
 	PlayerInRoom();
 })
 
@@ -69,7 +65,6 @@ roomSocket.on("client_leftID", function(id){
 	for(var i = 0 ; i <= playerinroom.length; i++){
 		if(playerinroom[i][0] == id){
 			playerinroom.splice(i, 1)
-			console.log("il est bien parti c'est bon")
 		}
 	}
 	PlayerInRoom(); //pour mettre à jour la liste des joueur dans le DOM
@@ -77,23 +72,22 @@ roomSocket.on("client_leftID", function(id){
 
 function PlayerInRoom(){ //met à jour la list avec tous les joueurs
 	$(".listplayer").html('');
-	$(".listplayer").append("<h4 class='playername " + colorpseudo +  "'>" + pseudo + "</h4>") //nous meme
+	$(".listplayer").append("<h4 class='playername " + colorpseudo +  "'>" + TextToHtml(pseudo) + "</h4>") //nous meme
 	for(var i = 0; i < playerinroom.length; i++ ){
-		$(".listplayer").append("<h4 class='playername " + playerinroom[i][2] +  "'>" + playerinroom[i][1] + "</h4>")
+		$(".listplayer").append("<h4 class='playername " + playerinroom[i][2] +  "'>" + TextToHtml(playerinroom[i][1]) + "</h4>")
 	}
 	PositionChat();//function déclaré dans un autre fichier plus tard.
 }
 
 // Quand on reçoit un message, on l'insère dans la page
 roomSocket.on('message', function(data) {
-    console.log("nouveau mesage")
     insereMessage(data.pseudo, data.message, data.color);
     servEtatPing = 2;//valeur abstraite
 })
 
 // Quand un nouveau client se connecte, on affiche l'information
 roomSocket.on('nouveau_client', function(pseudo) {
-    $('#zone_chat').append('<p class="chatmessNewClient messChat"><em>' + pseudo + ' join the room !</em></p>');
+    $('#zone_chat').append('<p class="chatmessNewClient messChat"><em>' + TextToHtml(pseudo) + ' join the room !</em></p>');
     element = document.getElementById('zone_chat');
     element.scrollTop = element.scrollHeight;
 	joinAudio.play()
@@ -101,7 +95,7 @@ roomSocket.on('nouveau_client', function(pseudo) {
 
 //quand un client part 
 roomSocket.on('client_left', function(pseudo) {
-    $('#zone_chat').append('<p class="chatmessNewClient messChat"><em>' + pseudo + ' left the room !</em></p>');
+    $('#zone_chat').append('<p class="chatmessNewClient messChat"><em>' + TextToHtml(pseudo) + ' left the room !</em></p>');
     element = document.getElementById('zone_chat');
     element.scrollTop = element.scrollHeight;
 	leaveAudio.play()
@@ -151,8 +145,31 @@ function addZero(i) {
     };
     return i;
 };
+
+function TextToHtml(t) { //pour eviter les failles de type xss
+    let c = ""
+    for (let i = 0; i < t.length; i++) {
+        switch (t[i]) {
+            case "<":
+                c += "&lt;"
+                break;
+            case ">":
+                c += "&gt;"
+                break;
+            case "\"":
+                c += "&quot;"
+                break;
+
+            default:
+                c += t[i]
+        }
+    }
+    return c
+}
+
+
 function insereMessage(pseudo, message, color) { //insert le message dans le DOM
-    $('#zone_chat').append('<p class="messChat fontMessage">'+ addZero(date.getHours()) + ":"+ addZero(date.getMinutes())+ " " +'<strong class="' + color + '" >' + pseudo + " :" + '</strong> ' + message + '</p>');
+    $('#zone_chat').append('<p class="messChat fontMessage">'+ addZero(date.getHours()) + ":"+ addZero(date.getMinutes())+ " " +'<strong class="' + color + '" >' + TextToHtml(pseudo) + " :" + '</strong> ' + TextToHtml(message) + '</p>');
     element = document.getElementById('zone_chat');
     element.scrollTop = element.scrollHeight;
     PositionChat();//pour mettre à jour la taille de la div
