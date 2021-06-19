@@ -1,8 +1,9 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Pragma" content="no-cache" /> <!-- to keep alway page update -->
-    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />  <!-- to keep alway page update -->
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" /> <!-- to keep alway page update -->
     <meta http-equiv="Expires" content="0" /><!-- to keep alway page update -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes"> <!-- to suport properly all mobil-->
     <title>Board Game Online</title>
@@ -10,7 +11,9 @@
     <link rel="stylesheet" href="cssfiles/morpion.css">
     <link href="http://fonts.googleapis.com/css?family=Roboto:100,400,300,500,700,900" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
 </head>
+
 <body style="margin: 0px; font-family: sans-serif;">
 
     <div class="main-center">
@@ -44,15 +47,15 @@
                             </div>
                         </div>
                         <form action="/" method="post" id="formulaire_chat">
-                            <input type="text" class="senderMess" name="message" id="message" placeholder="your message..." size="50" maxlength="400" autocomplete="off" style="margin-left: 0px;"/>
+                            <input type="text" class="senderMess" name="message" id="message" placeholder="your message..." size="50" maxlength="400" autocomplete="off" style="margin-left: 0px;" />
                         </form>
                     </div>
                 </div>
 
                 <div class="separationbarreV"></div>
 
-                <div class="gamePart">
-                    <canvas width="400px" height="400px" id="canvas" ></canvas>
+                <div class="gamePart" style="font-family: Roboto; font-weight: bold;">
+                    <canvas width="400px" height="400px" id="canvas"></canvas>
                     <div id="infoGame">
 
                     </div>
@@ -60,7 +63,7 @@
             </div>
         </div>
     </div>
-    
+
     <script>
         //script qui récupère tout les éléments de ejs du serveur
         url = "<%= url %>";
@@ -69,8 +72,6 @@
         roomcode = "<%= roomcode %>";
         LB = "<%= LB %>"
         namespace = "<%= namespace %>";
-
-        
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
@@ -83,4 +84,5 @@
         });
     </script>
 </body>
+
 </html>
