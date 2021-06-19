@@ -214,7 +214,8 @@ function Draw() {
         ctx.fillRect(0, 0, 400, 400)
         ctx.fillStyle = "red";
         ctx.textAlign = "center";
-        ctx.font = "100px sans-serif";
+        ctx.font = "150px sans-serif";
+        ctx.font = "150px Roboto";
         ctx.font = "150px Varela Round";
         ctx.fillText(etat, 200, 250);
     }
