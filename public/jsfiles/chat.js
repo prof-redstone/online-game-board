@@ -1,7 +1,7 @@
 //console.log(location.protocol + "//" + url);
 var chatSocket = io.connect(location.protocol + "//" + url + "/chat");
 var pseudo;
-//var colorpseudo = "black";
+var colorpseudo = "black";
 var servEtatPing = 0;
 var date = new Date();
 

@@ -94,7 +94,7 @@ function createCookiePseudo(pseudo) {
 }
 
 function readCookiePseudo() {
-    pseudo = undefined
+    pseudo = name
     try {pseudo = document.cookie.split('; ').find(row => row.startsWith('pseudo=')).split('=')[1];} catch (error) {}
     return pseudo
 }
@@ -105,6 +105,6 @@ function createCookieColor(color) {
 
 function readCookieColor() {
     color = "black"
-    try {color = document.cookie.split('; ').find(row => row.startsWith('color=')).split('=')[1];} catch (error) {}
+    try {color = document.cookie.split('; ').find(row => row.startsWith('color=')).split('=')[1];} catch (error) {color = "black"}
     return color
 }
