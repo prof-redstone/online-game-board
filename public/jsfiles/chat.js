@@ -88,6 +88,15 @@ function TextToHtml(t) { //pour eviter les failles de type xss
             case "\"":
                 c += "&quot;"
                 break;
+            case "\"":
+                c += "&#61;"
+                break;
+            case "\'":
+                c += "&apos;"
+                break;
+            case "=":
+                c += "&#61;"
+                break;
 
             default:
                 c += t[i]
@@ -97,7 +106,7 @@ function TextToHtml(t) { //pour eviter les failles de type xss
 }
 
 function insereMessage(pseudo, message, color) {
-    $('#zone_chat').append('<p class="messChat fontMessage">' + addZero(date.getHours()) + ":" + addZero(date.getMinutes()) + " " + '<strong class="' + color + '" >' + TextToHtml(pseudo) + " :" + '</strong> ' + TextToHtml(message) + '</p>');
+    $('#zone_chat').append('<p class="messChat fontMessage">' + addZero(date.getHours()) + ":" + addZero(date.getMinutes()) + " " + '<strong class="' + TextToHtml(color) + '" >' + TextToHtml(pseudo) + " :" + '</strong> ' + TextToHtml(message) + '</p>');
     element = document.getElementById('zone_chat');
     element.scrollTop = element.scrollHeight;
     PositionChat(); //pour mettre à jour la taille de la div
