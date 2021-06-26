@@ -1,12 +1,10 @@
 //console.log(location.protocol + "//" + url);
 var chatSocket = io.connect(location.protocol + "//" + url + "/chat");
 var pseudo;
-var colorpseudo = "black";
 var servEtatPing = 0;
 var date = new Date();
 
 if (name == "undefined") { //si le pseudo ne se trouve pas dans l'url
-    //pseudo = prompt('Quel est votre pseudo ?');
     if (pseudo == null) {
         pseudo = "anonymous";
     }
@@ -76,6 +74,9 @@ function addZero(i) {
 };
 
 function TextToHtml(t) { //pour eviter les failles de type xss
+    if(t == undefined){
+        return undefined
+    }
     let c = ""
     for (let i = 0; i < t.length; i++) {
         switch (t[i]) {
@@ -106,7 +107,7 @@ function TextToHtml(t) { //pour eviter les failles de type xss
 }
 
 function insereMessage(pseudo, message, color) {
-    $('#zone_chat').append('<p class="messChat fontMessage">' + addZero(date.getHours()) + ":" + addZero(date.getMinutes()) + " " + '<strong class="' + color + '" >' + TextToHtml(pseudo) + " :" + '</strong> ' + TextToHtml(message) + '</p>');
+    $('#zone_chat').append('<p class="messChat fontMessage">' + addZero(date.getHours()) + ":" + addZero(date.getMinutes()) + " " + '<strong class="' + TextToHtml(color) + '" >' + TextToHtml(pseudo) + " :" + '</strong> ' + TextToHtml(message) + '</p>');
     element = document.getElementById('zone_chat');
     element.scrollTop = element.scrollHeight;
     PositionChat(); //pour mettre à jour la taille de la div
@@ -144,3 +145,4 @@ chatSocket.on("serveurPing", function(NBusers) {
     servEtatPing = 2;
     $("#message").attr("placeholder", NBusers + " users are connected")
 });
+

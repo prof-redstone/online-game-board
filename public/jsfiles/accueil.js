@@ -1,5 +1,5 @@
 name = readCookiePseudo()
-changeColorPseudo(parseInt(readCookieColor()))
+
 
 $('#formulaire_name').submit(function() { //valide l'entrer du nom
     $('#inputpseudo').blur();
@@ -68,7 +68,9 @@ function changeColorPseudo(color) { //colorpseudo présent dans chat.js
     }
     $('.colorrect').css("background-color", colorrectcolor);
     createCookieColor(color)
+    return colorpseudo
 }
+
 
 $('#joinprform').submit(function() { //pour rejoindre une room
     var room = $('#inproompass').val();
@@ -104,7 +106,9 @@ function createCookieColor(color) {
 }
 
 function readCookieColor() {
-    color = "black"
-    try {color = document.cookie.split('; ').find(row => row.startsWith('color=')).split('=')[1];} catch (error) {color = "black"}
+    let color 
+    try {color = document.cookie.split('; ').find(row => row.startsWith('color=')).split('=')[1];} catch (error) {color = 1}
     return color
 }
+
+changeColorPseudo(parseInt(readCookieColor()))
