@@ -167,7 +167,7 @@ chat.on('connection', function(socket) {
             socket.pseudo = pseudo;
             socket.broadcast.emit("nouveau_client", socket.pseudo);
             socket.emit("message", {
-                pseudo: "serveur",
+                pseudo: "server",
                 message: "Welcome to Board Game online !"
             }) //message afficher dans le chat quand le client est connecté
         } else { //le pseudo n'est pas bon, a modifier pour laisser le client choisire.
@@ -200,7 +200,7 @@ var pr = io.of("/privateroom");
 
 pr.on('connection', function(socket) {
     socket.emit("message", {
-        pseudo: "serveur",
+        pseudo: "server",
         message: "You are in private room !",
         color: "black"
     }) //pour indiquer la connection dans le chat de la room
