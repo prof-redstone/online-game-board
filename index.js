@@ -107,8 +107,57 @@ app.get('/morpion', function(req, res) {
 			pseudo: pseudo,
 			colorpseudo: colorpseudo,
 			roomcode: room,
-			LB: LB,
-			namespace: "/gameChat"
+			LB: LB
+		});
+	}else if(room==false){
+		res.render('pages/accueil.ejs', {
+			url: req.headers.host,
+			name: "anonymous" + Math.floor(Math.random() * Math.floor(1000))
+		});
+	}
+
+    
+});
+
+//power4 pages
+app.get('/power4', function(req, res) {
+	var param = querystring.parse(url.parse(req.url).query);
+    var pseudo;
+    var colorpseudo;
+    var room = false;
+	var LB;
+	var returnLB
+    if ("ps" in param) { //pseudo
+        pseudo = param["ps"]
+    } else {
+        pseudo = "anonymous#" + Math.floor(Math.random() * Math.floor(1000));
+    }
+
+    if ("co" in param) { //color of pseudo
+        colorpseudo = param["co"]
+    } else {
+        colorpseudo = "black";
+    }
+
+	if ("LB" in param) {
+        LB = param["LB"];
+    } else {
+        LB = false
+    }
+
+    if ("room" in param) {
+        room = param["room"];
+    } else {
+        room = false
+    }
+
+	if(room!=false){
+		res.render('pages/power4.ejs', {
+			url: req.headers.host,
+			pseudo: pseudo,
+			colorpseudo: colorpseudo,
+			roomcode: room,
+			LB: LB
 		});
 	}else if(room==false){
 		res.render('pages/accueil.ejs', {
@@ -273,6 +322,13 @@ pr.on('connection', function(socket) {
         socket.to(roomcode).emit("startMorpion", roomCode)
     })
 
+    socket.on("startPower4", (roomcode) => {
+        console.log("démarrage du power4 dans le room : " + roomcode)
+        let roomCode = GenerateString(6)
+        socket.emit("startPower4", roomCode)
+        socket.to(roomcode).emit("startPower4", roomCode)
+    })
+
 });
 
 
@@ -356,7 +412,7 @@ gameChat.on("connection", (socket)=>{
 
 function GenerateString(length) {
     let result = '';
-    let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let characters = 'ABCDEFGHJKLMNOPQRSTUVWXYZ0123456789';
     for (let i = 0; i < length; i++) {
         result += characters.charAt(Math.floor(Math.random() * characters.length));
     }

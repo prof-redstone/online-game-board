@@ -1,13 +1,14 @@
+namespace = "/gameChat"; //global variable
 var roomSocket = io.connect(location.protocol + "//" + url + namespace);
 var roomjoined = false;
 var playerinroom = [];
 var NBplayer = undefined; //nombre de player dans la salle en tout 
 var connecting = false; //getclientconnected flague
 var myID = undefined;
-var checkLeader = false; //flague to full start game and communication  
+var checkLeader = false; //flag to full start game and communication  
 var currentLeader = undefined;
-var selfLeader = false;
-var servEtatPing = 1;
+var selfLeader = false; //flag
+var servEtatPing = 1; //pour test le ping et avertire en cas de deconnection
 var date = new Date(); //pour l'heure sur les messages
 
 /*
@@ -118,6 +119,7 @@ function SetLeaderByID(){
     }
     currentLeader = best;
     if(currentLeader == myID){
+        console.log('je suis leader')
         selfLeader = true;
     }
     checkLeader = true;
@@ -248,5 +250,5 @@ function transmit(data){
 }
 
 roomSocket.on("data", function(data) {
-    GetData(data);
+    ReceiveData(data);
 })

@@ -226,9 +226,19 @@ function randomstring(length){//créé une chaine aléatoire
 //bouton start gamee :
 let startgamebt = document.getElementById("startgamebt")
 startgamebt.onclick = ()=>{
-	if(gameMode == "morpion"){
+	gameMode = document.getElementById("gameSelection").value //pour chercher quel jeux est choisi
+	if(gameMode == "morpion"){ 
 		if(playerinroom.length == 1){ //1 + client == 2 
-			roomSocket.emit("startMorpion", roomcode);
+			roomSocket.emit("startMorpion", roomcode); //signal a tout le monde quon va changer de page et de jeux
+		}else if(playerinroom.length < 1){
+			alert("You need 2 player to start the game !")
+		}else if(playerinroom.length > 1){
+			alert("You need only 2 player to start the game !")
+		}
+	}
+	if(gameMode == "power4"){
+		if(playerinroom.length == 1){ //1 + client == 2 
+			roomSocket.emit("startPower4", roomcode);
 		}else if(playerinroom.length < 1){
 			alert("You need 2 player to start the game !")
 		}else if(playerinroom.length > 1){
@@ -237,8 +247,12 @@ startgamebt.onclick = ()=>{
 	}
 }
 
-
+//qq un a démarrer un jeux, chargeons la nouvelle pages
 //start Morpion game
 roomSocket.on("startMorpion", function(NewroomCode){
 	document.location.href = "/morpion" + "?"+ "room=" + NewroomCode + "&" + "LB=" + roomcode + "&" + "ps=" + pseudo + "&" + "co=" + colorpseudo;
+})
+
+roomSocket.on("startPower4", function(NewroomCode){
+	document.location.href = "/power4" + "?"+ "room=" + NewroomCode + "&" + "LB=" + roomcode + "&" + "ps=" + pseudo + "&" + "co=" + colorpseudo;
 })
