@@ -1,4 +1,4 @@
-console.log("power 4 js in beta !")
+console.log("connect 4 js in beta !")
 var start = false //flag
 var canvas = document.getElementById("canvas")
 var DivInfo = document.getElementById("infoGame")

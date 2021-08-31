@@ -119,8 +119,8 @@ app.get('/morpion', function(req, res) {
     
 });
 
-//power4 pages
-app.get('/power4', function(req, res) {
+//connect4 pages
+app.get('/connect4', function(req, res) {
 	var param = querystring.parse(url.parse(req.url).query);
     var pseudo;
     var colorpseudo;
@@ -152,7 +152,7 @@ app.get('/power4', function(req, res) {
     }
 
 	if(room!=false){
-		res.render('pages/power4.ejs', {
+		res.render('pages/connect4.ejs', {
 			url: req.headers.host,
 			pseudo: pseudo,
 			colorpseudo: colorpseudo,
@@ -323,7 +323,7 @@ pr.on('connection', function(socket) {
     })
 
     socket.on("startPower4", (roomcode) => {
-        console.log("démarrage du power4 dans le room : " + roomcode)
+        console.log("démarrage du connect4 dans le room : " + roomcode)
         let roomCode = GenerateString(6)
         socket.emit("startPower4", roomCode)
         socket.to(roomcode).emit("startPower4", roomCode)
