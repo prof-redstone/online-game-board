@@ -12,6 +12,7 @@ var gride = [
     [0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0],
 ]
+//test pour le dev
 var joueur = 1; //1 and 2, joueur qui doit jouer
 var etat = "" //win, lose, NULL or undefine
 
