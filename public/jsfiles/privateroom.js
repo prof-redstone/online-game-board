@@ -236,7 +236,7 @@ startgamebt.onclick = ()=>{
 			alert("You need only 2 player to start the game !")
 		}
 	}
-	if(gameMode == "power4"){
+	if(gameMode == "connect4"){
 		if(playerinroom.length == 1){ //1 + client == 2 
 			roomSocket.emit("startPower4", roomcode);
 		}else if(playerinroom.length < 1){
@@ -254,5 +254,5 @@ roomSocket.on("startMorpion", function(NewroomCode){
 })
 
 roomSocket.on("startPower4", function(NewroomCode){
-	document.location.href = "/power4" + "?"+ "room=" + NewroomCode + "&" + "LB=" + roomcode + "&" + "ps=" + pseudo + "&" + "co=" + colorpseudo;
+	document.location.href = "/connect4" + "?"+ "room=" + NewroomCode + "&" + "LB=" + roomcode + "&" + "ps=" + pseudo + "&" + "co=" + colorpseudo;
 })
