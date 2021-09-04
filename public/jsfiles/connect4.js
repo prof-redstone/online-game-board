@@ -12,7 +12,6 @@ var gride = [
     [0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0],
 ]
-//test pour le dev
 var joueur = 1; //1 and 2, joueur qui doit jouer
 var etat = "" //win, lose, NULL or undefine
 
@@ -32,6 +31,7 @@ function Start() {
 
 
     Draw()
+    Info()
 }
 
 
@@ -40,8 +40,6 @@ function Draw(){
 
 
     ctx.clearRect(0,0,400,400)
-
-    
     //background
     ctx.fillStyle = "#EEE"
     ctx.fillRect(0, 0, 400, 400)
@@ -103,6 +101,7 @@ function UpdateGame(){//equivalent a loop
         for (let j = 0; j < 6; j++) {
             if( g[j][i] == g[j][i+1] && g[j][i+2] == g[j][i+3] && g[j][i] == g[j][i+3] && g[j][i] != 0 ){
                 win = true
+                console.log("win horizontal to ", joueur)
             }
         }
     }
@@ -110,20 +109,23 @@ function UpdateGame(){//equivalent a loop
         for (let j = 0; j < 3; j++) {
             if( g[j][i] == g[j+1][i] && g[j+2][i] == g[j+3][i] && g[j][i] == g[j+3][i] && g[j][i] != 0 ){
                 win = true
+                console.log("win verticaly to ", joueur)
             }
         }
     }
-    for (let i = 0; i < 4; i++) {//botleft top rig
+    for (let i = 0; i < 4; i++) {//botright topleft
         for (let j = 0; j < 3; j++) {
             if( g[j][i] == g[j+1][i+1] && g[j+2][i+2] == g[j+3][i+3] && g[j][i] == g[j+3][i+3] && g[j][i] != 0 ){
                 win = true
+                console.log("win botright topleft to ", joueur)
             }
         }
     }
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 4; i++) {//botleft topright
         for (let j = 0; j < 3; j++) {
-            if( g[j][i+3] == g[j+1][i+2] && g[j+2][i+2] == g[j+3][i] && g[j][i+3] == g[j+3][i] && g[j+3][i] != 0 ){
+            if( g[j][i+3] == g[j+1][i+2] && g[j+2][i+1] == g[j+3][i] && g[j][i+3] == g[j+3][i] && g[j+3][i] != 0 ){
                 win = true
+                console.log("win botleft topright to ", joueur)
             }
         }
     }
@@ -135,7 +137,7 @@ function UpdateGame(){//equivalent a loop
                 type: "message",
                 content: "J1W"
             })
-        }else{
+        }else if(joueur == 2){
             etat = "LOSE"
             console.log("c'est lui qui a gagnée")
             TransmitData({
@@ -171,10 +173,74 @@ function UpdateGame(){//equivalent a loop
         player: joueur
     })
     Draw()//show the changement
+    Info()
 }
 
-function Info(){
+function Info() { //update info bar on bottom of canvas
+    let symb = "blue"
+    if (playerRole == 2) {
+        symb = "dark"
+    }
+    if ((playerRole == 1 && joueur == 1) || (playerRole == 2 && joueur == 2)) {
+        DivInfo.innerHTML = "You are : " + symb + " <br> your turn <br>"
+    } else {
+        if (playerinroom.length != 0) {
+            DivInfo.innerHTML = "You are : " + symb + " <br>  " + playerinroom[0][1] + " turn <br>"
+        } else {
+            DivInfo.innerHTML = "You are : " + symb + " <br> opponent turn <br>"
+        }
+    }
+    if (etat != "") {
+        if (etat == "LOSE" || etat == "WIN") {
+            DivInfo.appendChild(document.createTextNode(" YOU " + etat))
+        } else {
+            DivInfo.appendChild(document.createTextNode(" " + etat))
+        }
+    }
 
+
+    if (etat != "") {
+        var btn = document.createElement("BUTTON")
+        btn.innerHTML = "RESTART";
+        btn.onclick = () => {
+            Reset();
+        }
+        btn.style.color = "black";
+        btn.style.border = "none";
+        btn.style.backgroundColor = "#4CAF50";
+        btn.style.padding = "5px 10px";
+        btn.style.marginLeft = "5px";
+        btn.style.textDecoration = "none";
+        btn.style.textAlign = "center";
+        btn.style.fontSize = "16px";
+        btn.style.fontFamily = "Roboto";
+        btn.style.fontWeight = "bold";
+        btn.style.borderRadius = "5px";
+        
+        DivInfo.appendChild(btn)
+
+    }
+}
+
+function Reset(){
+    console.log("reset")
+    gride = [
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+    ]
+    etat = "";
+    joueur = nb_random(1, 2)
+    TransmitData({
+        type: "restart",
+        joueur: joueur
+    })
+    
+    Draw();
+    Info();
 }
 
 //input avec envent listener
@@ -267,10 +333,10 @@ function ReceiveData(data){
                 joueur = 0
             }
             if (message == "J2W") {
-                if (playerRole == 2) {
-                    etat = "WIN"
-                } else {
+                if (playerRole == 1) {
                     etat = "LOSE"
+                } else {
+                    etat = "WIN"
                 }
                 joueur = 0
             }
@@ -283,14 +349,18 @@ function ReceiveData(data){
         }
     }
     if (data.value.type == "restart") {//leader nous demande de reset
+        console.log("reset")
         gride = [
-            [0, 0, 0],
-            [0, 0, 0],
-            [0, 0, 0]
-        ];
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+        ]
         etat = "";
         joueur = data.value.joueur;
-        Draw()
+        Draw();
         Info();
     }
 }

@@ -143,8 +143,6 @@ function Info() { //update info bar on bottom of canvas
         btn.style.fontWeight = "bold";
         btn.style.borderRadius = "5px";
         
-
-
         DivInfo.appendChild(btn)
 
     }
